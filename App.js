@@ -8,38 +8,13 @@ import Login from './src/screens/Authentication/LoginScreen';
 import SignUp from './src/screens/Authentication/Signup';
 const Stack = createNativeStackNavigator();
 
-const Auth = () => {
-  // Stack Navigator for Login and Sign up Screen
-  return (
-    <Stack.Navigator initialRouteName="LoginScreen">
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="RegisterScreen"
-        component={SignUp}
-        options={{
-          title: 'Register', //Set Header Title
-          headerStyle: {
-            backgroundColor: '#307ecc', //Set Header color
-          },
-          headerTintColor: '#fff', //Set Header text color
-          headerTitleStyle: {
-            fontWeight: 'bold', //Set Header text style
-          },
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
+
 export default function App() {
   return (
 
     <NavigationContainer>
       <Navbar> </Navbar>
-      <SignUp/>
+     
     </NavigationContainer>
 
   );

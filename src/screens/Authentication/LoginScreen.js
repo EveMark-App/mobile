@@ -9,12 +9,15 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Loader from '../../components/loader';
+import {Button} from 'react-native';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState("");
+
+
   const handleLogin = () => {
    
     setErrortext("");
@@ -86,6 +89,7 @@ export default function Login() {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+    
     </View>
   );
 }
@@ -128,5 +132,11 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
+  },
+  text:{
+    color:"grey",
+    marginTop: 20,
+
+
   },
 });
