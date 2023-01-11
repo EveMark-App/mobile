@@ -6,20 +6,18 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import Loader from '../../components/loader';
-import {Button} from 'react-native';
+import Loader from "../../components/loader";
+import { Button } from "react-native";
 import { Auth } from "../../components/Auth";
+import { ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 
-
-export default function Login() {
+export default function Login({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState("");
-
 
   const handleLogin = () => {
     setErrortext("");
@@ -48,12 +46,13 @@ export default function Login() {
         console.log(responseJson);
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
-           await  Auth.save(responseJson);
+          await Auth.save(responseJson);
+          navigation.navigate("Marketplace")
         } else {
           setErrortext(responseJson.msg);
           console.log("Please check your email id or password");
         }
-        console.log( await Auth.get())
+        console.log(await Auth.get());
       })
       .catch((error) => {
         //Hide Loader
@@ -66,7 +65,10 @@ export default function Login() {
     <View style={styles.container}>
       <Loader loading={loading} />
       <StatusBar style="auto" />
-      <Image style={styles.image} source={require("../../../assets/logo.png")} />
+      <Image
+        style={styles.image}
+        source={require("../../../assets/logo.png")}
+      />
       <View style={styles.inputView}>
         <TextInput
           style={styles.Textinput}
@@ -89,7 +91,6 @@ export default function Login() {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-    
     </View>
   );
 }
@@ -133,10 +134,8 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
   },
-  text:{
-    color:"grey",
+  text: {
+    color: "grey",
     marginTop: 20,
-
-
   },
 });

@@ -1,22 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import Navbar from './src/components/Navbar/Navbar';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import MarketplaceScreen from './src/screens/Marketplace/MarketplaceSreen';
-import Login from './src/screens/Authentication/LoginScreen';
-import SignUp from './src/screens/Authentication/Signup';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import Navbar from "./src/components/Navbar/Navbar";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MarketplaceScreen from "./src/screens/Marketplace/MarketplaceSreen";
+import Login from "./src/screens/Authentication/LoginScreen";
+import SignUp from "./src/screens/Authentication/Signup";
+import { useEffect, useState } from "react";
+import { Auth } from "./src/components/Auth";
 const Stack = createNativeStackNavigator();
 
-
 export default function App() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  useEffect(  ()=>{
+     Auth.delete()
+    setIsSignedIn( false)
+
+  }, [isSignedIn])
+
   return (
-
     <NavigationContainer>
-      <Navbar> </Navbar>
-     
-    </NavigationContainer>
+      {isSignedIn ? (
+        <>
+          <Navbar></Navbar>
+        </>
+      ) : (
+        <>
+          <Stack.Navigator>
+            <Stack.Screen name="SignIn" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
 
+
+          </Stack.Navigator>
+        </>
+      )}
+    </NavigationContainer>
   );
 }
 

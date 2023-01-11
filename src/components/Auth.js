@@ -17,7 +17,7 @@ export const Auth = {
         }
         catch(error){
             console.log(error)
-            return null;
+            return false;
         }
     },
     delete: async ()=>{
