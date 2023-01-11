@@ -47,7 +47,7 @@ export default function Login({navigation}) {
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
           await Auth.save(responseJson);
-          navigation.navigate("Marketplace")
+          navigation.navigate("Navbar")
         } else {
           setErrortext(responseJson.msg);
           console.log("Please check your email id or password");
