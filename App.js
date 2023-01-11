@@ -42,7 +42,7 @@ export default function App() {
           }}>
             <Stack.Screen name="SignIn" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Marketplace" component={Navbar}/>
+            <Stack.Screen name="Navbar" component={Navbar}/>
 
 
           </Stack.Navigator>
