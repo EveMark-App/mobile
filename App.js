@@ -16,8 +16,10 @@ export default function App() {
 
   useEffect(()=>{
     const checkLogin = async ()=>{
-    
-      setIsSignedIn( (await Auth.get()) != (null || false) )
+      const user = await Auth.get();
+      console.log("user")
+      console.log(user)
+      setIsSignedIn( user != (null || false))
       setIsReady(true);
     }
     if(!isReady)
