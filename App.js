@@ -12,11 +12,22 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
-  useEffect(  ()=>{
-     Auth.delete()
-    setIsSignedIn( false)
+  const [isReady, setIsReady] = useState(false);
 
-  }, [isSignedIn])
+  useEffect(()=>{
+    const checkLogin = async ()=>{
+    
+      setIsSignedIn( (await Auth.get()) != (null || false) )
+      setIsReady(true);
+    }
+    if(!isReady)
+      checkLogin();
+  }, [isReady])
+
+
+  if (!isReady) {
+    return null;
+  }
 
   return (
     <NavigationContainer>
