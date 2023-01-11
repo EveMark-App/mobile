@@ -10,7 +10,9 @@ const Tab = createBottomTabNavigator();
 
 const Navbar = () =>{
     return (
-        <Tab.Navigator>
+        <Tab.Navigator   screenOptions={{
+            headerShown: false
+          }}>
             <Tab.Screen name="Marketplace" component={MarketplaceScreen} />
             <Tab.Screen name="My Events" component={MyEventsScreen} />
             <Tab.Screen name="My Tickets" component={MyTicketScreen} />

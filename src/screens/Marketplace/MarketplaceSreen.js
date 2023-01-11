@@ -6,7 +6,7 @@ const MarketplaceScreen = ({navigation}) => {
       <Button
         title="Go to Jane's profile"
         onPress={() =>
-          navigation.navigate('Profile', {name: 'Jane'})
+          navigation.navigate('Profile')
         }
       />
     );
