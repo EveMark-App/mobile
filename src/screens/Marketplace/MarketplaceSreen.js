@@ -1,15 +1,24 @@
 import * as React from 'react';
-import {Button} from 'react-native';
+import {View} from 'react-native';
+import Header from '../../components/Header/Header';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import MyCardList from '../../components/CardList/CardList';
 
-const MarketplaceScreen = ({navigation}) => {
-    return (
-      <Button
-        title="Go to Jane's profile"
-        onPress={() =>
-          navigation.navigate('Profile')
-        }
-      />
-    );
+const MarketplaceScreen = () => {
+    return(
+    <View >
+    <Header/>
+    <View>
+    <SearchBar/>
+<View>
+  <MyCardList/>
+</View>
+    </View>
+    </View>
+
+
+
+  );
   };
 
 export default MarketplaceScreen;
