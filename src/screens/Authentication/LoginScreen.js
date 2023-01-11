@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import Loader from '../components/loader';
+import Loader from '../../components/loader';
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -63,7 +63,7 @@ export default function Login() {
     <View style={styles.container}>
     <Loader loading={loading} />
       <StatusBar style="auto" />
-      <Image style={styles.image} source={require("../../assets/logo.png")} />
+      <Image style={styles.image} source={require("../../../assets/logo.png")} />
       <View style={styles.inputView}>
         <TextInput
           style={styles.Textinput}
