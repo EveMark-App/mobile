@@ -26,7 +26,7 @@ export default function SignUp() {
     <View style={styles.container}>   
   
     <StatusBar style="auto" />
-    <Image style={styles.image} source={require("../../assets/logo.png")} />
+    <Image style={styles.image} source={require("../../../assets/logo.png")} />
    
    
     <View style={styles.inputView}>
