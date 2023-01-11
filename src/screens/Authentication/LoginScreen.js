@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import Loader from '../../components/loader';
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -28,9 +29,10 @@ export default function Login() {
     setLoading(true);
     let dataToSend = { email, password };
 
-    fetch("https://back-brbfu.ondigitalocean.app/api/user/login", {
+    console.log(dataToSend)
+    fetch("https://evemark.samikammoun.me/api/user/login", {
       method: "POST",
-      body: dataToSend,
+      body: JSON.stringify(dataToSend),
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,7 +43,7 @@ export default function Login() {
         setLoading(false);
         console.log(responseJson);
         // If server response message same as Data Matched
-        if (responseJson.status === "success") {
+        if (!responseJson.hasOwnProperty("error")) {
           AsyncStorage.setItem("user_id", responseJson.data.email);
           console.log(responseJson.data.email);
           
@@ -59,8 +61,9 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
+    <Loader loading={loading} />
       <StatusBar style="auto" />
-      <Image style={styles.image} source={require("../../assets/logo.png")} />
+      <Image style={styles.image} source={require("../../../assets/logo.png")} />
       <View style={styles.inputView}>
         <TextInput
           style={styles.Textinput}
