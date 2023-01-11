@@ -91,6 +91,7 @@ export default function Login({navigation}) {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+      <Text style={styles.bottomText} onPress={()=> navigation.navigate('SignUp')}> Don't have an account yet?</Text>
     </View>
   );
 }
@@ -138,4 +139,7 @@ const styles = StyleSheet.create({
     color: "grey",
     marginTop: 20,
   },
+  bottomText:{
+    marginTop:20
+  }
 });

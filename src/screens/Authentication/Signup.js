@@ -7,7 +7,7 @@ import { View,
     Image, } from 'react-native';
 import { StatusBar } from "expo-status-bar";
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
 
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -77,6 +77,8 @@ export default function SignUp() {
       >
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
+      <Text style={styles.bottomText}  onPress={()=>navigation.navigate('SignIn')}> Already have an account?</Text>
+
     </View>
   );
 }
@@ -128,5 +130,8 @@ const styles = StyleSheet.create({
 
 
   },
+  bottomText:{
+    marginTop:20
+  }
 });
 
