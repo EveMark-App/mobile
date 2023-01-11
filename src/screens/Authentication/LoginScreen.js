@@ -6,10 +6,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import Loader from '../../components/loader';
 import {Button} from 'react-native';
+import { Auth } from "../components/Auth";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -19,7 +22,6 @@ export default function Login() {
 
 
   const handleLogin = () => {
-   
     setErrortext("");
     if (!email) {
       alert("Please fill Email");
@@ -32,7 +34,6 @@ export default function Login() {
     setLoading(true);
     let dataToSend = { email, password };
 
-    console.log(dataToSend)
     fetch("https://evemark.samikammoun.me/api/user/login", {
       method: "POST",
       body: JSON.stringify(dataToSend),
@@ -41,19 +42,18 @@ export default function Login() {
       },
     })
       .then((response) => response.json())
-      .then((responseJson) => {
+      .then(async (responseJson) => {
         //Hide Loader
         setLoading(false);
         console.log(responseJson);
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
-          AsyncStorage.setItem("user_id", responseJson.data.email);
-          console.log(responseJson.data.email);
-          
+           await  Auth.save(responseJson);
         } else {
           setErrortext(responseJson.msg);
           console.log("Please check your email id or password");
         }
+        console.log( await Auth.get())
       })
       .catch((error) => {
         //Hide Loader
@@ -64,7 +64,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-    <Loader loading={loading} />
+      <Loader loading={loading} />
       <StatusBar style="auto" />
       <Image style={styles.image} source={require("../../../assets/logo.png")} />
       <View style={styles.inputView}>
