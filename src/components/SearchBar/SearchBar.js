@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity , StyleSheet, Button} from 'react-native';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 
 const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('');

@@ -45,8 +45,8 @@ const [data , setData]= useState([
 
             justifyContent: 'center',
           overflow: 'scroll',
-          top:150,
-          elevation: 10,
+          top:100,
+          
           
 
 

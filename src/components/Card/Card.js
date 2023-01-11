@@ -7,7 +7,7 @@ const Card = (props) => {
       <View style={styles.card}>
         <View style={styles.imageContainer}>
           <Image
-            source={require("./assets/mts.jpg")} 
+            source={require("../../../assets/mts.jpg")} 
             style={styles.image}
           />
         </View>
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   cardContainer: {
     alignItems: 'center',
     justifyContent :'center',
+    
 
     left: 0,
     right: 0
