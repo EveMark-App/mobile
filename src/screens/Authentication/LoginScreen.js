@@ -11,7 +11,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import Loader from '../../components/loader';
 import {Button} from 'react-native';
-import { Auth } from "../components/Auth";
+import { Auth } from "../../components/Auth";
 
 
 export default function Login() {
