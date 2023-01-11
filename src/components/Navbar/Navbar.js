@@ -19,12 +19,16 @@ const Navbar = () =>{
                 <Icon name="home-analytics" color="#0094D2" size={25}/>
                 );
             }}} />
+            <Tab.Screen name="My Tickets" component={MyTicketScreen} options={{tabBarIcon:()=>{
+                return(
+                <Icon name="ticket-percent-outline" color="#0094D2" size={25}/>
+                );
+            }}}  />
             <Tab.Screen name="My Events" component={MyEventsScreen} options={{tabBarIcon:()=>{
                 return(
                 <MIcon name="event" color="#0094D2" size={25}/>
                 );
             }}}  />
-            <Tab.Screen name="My Tickets" component={MyTicketScreen} />
             <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarIcon:()=>{
                 return(
                 <Icon name="account-circle-outline" color="#0094D2" size={25}/>
