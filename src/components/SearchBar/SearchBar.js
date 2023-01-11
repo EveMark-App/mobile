@@ -20,12 +20,9 @@ const SearchBar = () => {
         />
         <View>
     
-        <TouchableOpacity
-        style={styles.button}
-        onPress={handleSubmit}
-      >
-        <Text style={styles.buttonText}>Search</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={{ width: 80, height: 30, top:35, borderRadius: 10 ,borderWidth: 3, borderColor: '#4a1259',backgroundColor: "#4a1259", top:40,right :15, padding: 8, marginLeft: 20, justifyContent: "center", alignItems: "center" }} onPress={handleSubmit}>
+<Text style={{ color: "white" ,fontSize:7}}>Search</Text>
+</TouchableOpacity>
           
         </View>
         </View>
@@ -37,24 +34,8 @@ const SearchBar = () => {
 
 };
 
-const styles = StyleSheet.create({
-button: {
-  backgroundColor: '#4a1259',
-  padding: 10,
-  borderRadius: 10,
-  alignSelf: 'center',
-  width: 80, 
-  height: 30, 
-  top:35,
-},
-buttonText: {
-  color: 'white',
-  fontWeight: 'bold',
-},
-});
-<TouchableOpacity style={{ width: 80, height: 30, top:35, borderRadius: 10 ,borderWidth: 3, borderColor: '#4a1259',backgroundColor: "#4a1259", top:40,right :15, padding: 8, marginLeft: 20, justifyContent: "center", alignItems: "center" }} onPress={handleSubmit}>
-<Text style={{ color: "white" ,fontSize:7}}>Search</Text>
-</TouchableOpacity>
+
+
 
 
 
