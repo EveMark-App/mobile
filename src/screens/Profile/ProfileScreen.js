@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState ,useEffect} from 'react';
 import {View, SafeAreaView, StyleSheet, Image, ScrollView} from 'react-native';
 import { Button } from 'react-native-elements';
 import {
@@ -15,6 +15,38 @@ import { Auth } from '../../components/Auth';
 
 
 const ProfileScreen =({navigation})=>{
+  const [profile, setProfile] = useState({});
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const getProfileData = async ()=>{
+      const user = JSON.parse(await Auth.get())
+      console.log()
+      fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then(async (responseJson) => {
+          //Hide Loader
+          console.log(responseJson)
+          setProfile(responseJson);
+          setIsReady(true);
+        })
+        .catch((error) => {
+          //Hide Loader
+          console.error(error);
+        });
+    }
+    if(!isReady)
+    getProfileData();
+   
+  }, [isReady]);
+
+  if (!isReady) {
+    return null;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -28,8 +60,8 @@ const ProfileScreen =({navigation})=>{
             <Title style={[styles.title, {
               marginTop:15,
               marginBottom: 5,
-            }]}>Jay Pritchett</Title>
-            <Caption style={styles.caption}>@j_pritch</Caption>
+            }]}>{profile.first_name + " " + profile.last_name}</Title>
+            <Caption style={styles.caption}>@{profile.first_name +profile.last_name}</Caption>
           </View>
         </View>
       </View>
@@ -50,20 +82,20 @@ const ProfileScreen =({navigation})=>{
         </View>
         <View style={styles.row}>
           <Icon name="email" color="#777777" size={20}/>
-          <Text style={{color:"#777777", marginLeft: 20}}>jay_pritchett@email.com</Text>
+          <Text style={{color:"#777777", marginLeft: 20}}>{profile.email}</Text>
         </View>
       </View>
       <View style={styles.infoBoxWrapper}>
           <View style={styles.infoBox}>
-            <Title style={styles.number}>5</Title>
+            <Title style={styles.number}>{profile.created_events.length.toString()}</Title>
             <Caption>Events Organized</Caption>
           </View>
           <View style={styles.infoBox}>
-            <Title style={styles.number}>10</Title>
+            <Title style={styles.number}>{profile.my_events.length.toString()}</Title>
             <Caption>Events attended</Caption>
           </View>
           <View style={styles.infoBox}>
-            <Title style={styles.number}>12</Title>
+            <Title style={styles.number}>{profile.my_events.length.toString()}</Title>
             <Caption>Tickets</Caption>
           </View>
       </View>

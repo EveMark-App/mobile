@@ -5,7 +5,7 @@ const MyCardList = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://192.168.123.45:3001/event/get-all", {
+    fetch("https://evemark.samikammoun.me/api/event/get-all", {
       method: "GET",
       credentials: "include",
     })
