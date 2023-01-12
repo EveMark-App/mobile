@@ -16,10 +16,8 @@ export default function App() {
 
   useEffect(()=>{
     const checkLogin = async ()=>{
-      const user = await Auth.get();
-      console.log("user")
-      console.log(user)
-      setIsSignedIn( user != (null || false))
+      const user = await Auth.get();   
+      setIsSignedIn( user != null)
       setIsReady(true);
     }
     if(!isReady)
@@ -42,6 +40,7 @@ export default function App() {
           <Stack.Navigator screenOptions={{
             headerShown: false
           }}>
+            
             <Stack.Screen name="SignIn" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="Navbar" component={Navbar}/>

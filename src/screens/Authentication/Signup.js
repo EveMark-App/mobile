@@ -1,91 +1,135 @@
-import React, { useState } from 'react';
-import { View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    Image, } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
+import Loader from "../../components/loader";
 
-export default function SignUp({navigation}) {
+export default function SignUp({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorText, setErrortext] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
-
-  
   const handleSignUp = () => {
-    // Perform sign up logic here, such as sending a request to your backend server
-    // to create a new user account with the provided email and password
-    // You can also add some validation here like checking the passwords match.
+    setErrortext("");
+    if (!email) {
+      alert("Please fill Email");
+      return;
+    }
+    if (!password) {
+      alert("Please fill Password");
+      return;
+    }
+    if (!firstName) {
+      alert("Please fill first name");
+      return;
+    }
+    if (!lastName) {
+      alert("Please fill last name");
+      return;
+    }
+    setLoading(true);
+    let dataToSend = {
+      email,
+      password,
+      last_name: lastName,
+      first_name: firstName,
+    };
+
+    fetch("https://evemark.samikammoun.me/api/user/create", {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then(async (responseJson) => {
+        //Hide Loader
+        setLoading(false);
+        console.log(responseJson);
+        // If server response message same as Data Matched
+        if (!responseJson.hasOwnProperty("error")) {
+          navigation.navigate("SignIn");
+        } else {
+          setErrortext(responseJson.msg);
+          console.log("Error while creating your account");
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        setLoading(false);
+        console.error(error);
+      });
   };
 
-
   return (
-    <View style={styles.container}>   
-  
-    <StatusBar style="auto" />
-    <Image style={styles.image} source={require("../../../assets/logo.png")} />
-   
-   
-    <View style={styles.inputView}>
-      <TextInput
-        style={styles.Textinput}
-        placeholder="FirstName"
-          
-          onChangeText={(firstName) =>setFirstName(text)}
+    <View style={styles.container}>
+        <Loader loading={loading} />
+
+      <StatusBar style="auto" />
+      <Image
+        style={styles.image}
+        source={require("../../../assets/logo.png")}
       />
+
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.Textinput}
+          placeholder="FirstName"
+          onChangeText={(firstName) => setFirstName(firstName)}
+        />
       </View>
 
       <View style={styles.inputView}>
-      <TextInput
-        style={styles.Textinput}
-        placeholder="lastName"
-          
-          onChangeText={(lastName) =>setLastName( text)}
-      />
-    
+        <TextInput
+          style={styles.Textinput}
+          placeholder="lastName"
+          onChangeText={(lastName) => setLastName(lastName)}
+        />
       </View>
 
-
-
-    <View style={styles.inputView}>
-      <TextInput
-        style={styles.Textinput}
-        placeholder="email address "
-          
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.Textinput}
+          placeholder="Email Address"
           onChangeText={(email) => setEmail(email)}
-      />
+        />
       </View>
       <View style={styles.inputView}>
-      <TextInput
-        style={styles.Textinput}
-        placeholder="Password"
-        value={password}
-        secureTextEntry={true}
-        onChangeText={text => setPassword(text)}
-      />
-      
-       </View>
+        <TextInput
+          style={styles.Textinput}
+          placeholder="Password"
+          value={password}
+          secureTextEntry={true}
+          onChangeText={(text) => setPassword(text)}
+        />
+      </View>
 
-      
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={handleSignUp}
-      >
+      <TouchableOpacity style={styles.button} onPress={handleSignUp}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
-      <Text style={styles.bottomText}  onPress={()=>navigation.navigate('SignIn')}> Already have an account?</Text>
-
+      <Text
+        style={styles.bottomText}
+        onPress={() => navigation.navigate("SignIn")}
+      >
+        {" "}
+        Already have an account?
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
- 
     flex: 1,
     backgroundColor: "white",
     alignItems: "center",
@@ -99,7 +143,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignItems: "center",
   },
- 
 
   Textinput: {
     height: 50,
@@ -109,7 +152,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginBottom: 40,
-    width: 100, height: 100,
+    width: 100,
+    height: 100,
   },
   button: {
     width: "80%",
@@ -121,17 +165,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#4a1259",
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
-  text:{
-    color:"grey",
+  text: {
+    color: "grey",
     marginTop: 20,
-
-
   },
-  bottomText:{
-    marginTop:20
-  }
+  bottomText: {
+    marginTop: 20,
+  },
 });
-

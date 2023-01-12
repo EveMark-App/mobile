@@ -52,7 +52,6 @@ export default function Login({navigation}) {
           setErrortext(responseJson.msg);
           console.log("Please check your email id or password");
         }
-        console.log(await Auth.get());
       })
       .catch((error) => {
         //Hide Loader
