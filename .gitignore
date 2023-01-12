@@ -6,6 +6,7 @@ web-build
 bare-apps
 
 # Logs
+.expo
 logs
 *.log
 npm-debug.log*
