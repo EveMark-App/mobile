@@ -15,6 +15,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
 
 const Event = () => {
+  
   return (
     <View style={styles.container}>
       <Image style={styles.banner} source={require("../../../assets/kenza.jpg")} />
