@@ -24,7 +24,7 @@ const Navbar = () =>{
                 <Icon name="ticket-percent-outline" color="#0094D2" size={25}/>
                 );
             }}}  />
-            <Tab.Screen name="My Events" component={MyEventsScreen} options={{tabBarIcon:()=>{
+            <Tab.Screen name="Created Events" component={MyEventsScreen} options={{tabBarIcon:()=>{
                 return(
                 <MIcon name="event" color="#0094D2" size={25}/>
                 );
