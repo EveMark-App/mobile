@@ -29,7 +29,7 @@ const Card = ({ data }) => {
             </Text>
           </View>
           <View style={styles.textFrame}>
-            <Text onPress={()=>navigation.navigate("Event")}
+            <Text onPress={()=>navigation.navigate("Event", {EventId: data.id})}
               style={{
                 alignSelf: "center",
                 fontSize: 7,
