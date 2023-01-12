@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState ,useEffect} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -19,10 +19,10 @@ const Event = ({ route, navigation }) => {
   const [isReady, setIsReady] = useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
   const { eventId } = route.params;
-
   useEffect(() => {
     const getEvent = async () => {
       console.log(eventId)
+      
       fetch("https://evemark.samikammoun.me/api/event/get-one/" + eventId, {
         method: "GET",
         credentials: "include",
@@ -30,6 +30,7 @@ const Event = ({ route, navigation }) => {
         .then((response) => response.json())
         .then( (responseJson) => {
           setEventData(responseJson);
+          console.log(responseJson)
           setIsReady(true);
         })
         .catch((error) => {
