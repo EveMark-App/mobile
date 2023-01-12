@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, SafeAreaView, StyleSheet, Image, ScrollView} from 'react-native';
+import { Button } from 'react-native-elements';
 import {
   Avatar,
   Title,
@@ -9,10 +10,11 @@ import {
 } from 'react-native-paper';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Auth } from '../../components/Auth';
 
 
 
-const ProfileScreen =()=>{
+const ProfileScreen =({navigation})=>{
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -31,6 +33,11 @@ const ProfileScreen =()=>{
           </View>
         </View>
       </View>
+      <Button onPress={async ()=> {
+        await Auth.delete() 
+        navigation.navigate("SignIn")
+
+      }} title="Logout">logout</Button>
 
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
@@ -46,7 +53,6 @@ const ProfileScreen =()=>{
           <Text style={{color:"#777777", marginLeft: 20}}>jay_pritchett@email.com</Text>
         </View>
       </View>
-
       <View style={styles.infoBoxWrapper}>
           <View style={styles.infoBox}>
             <Title style={styles.number}>5</Title>
@@ -92,6 +98,7 @@ const ProfileScreen =()=>{
         <Image resizeMode='center' style={{width:300, height: 300, paddingTop:50, alignSelf:'center'}} source={require('../../../assets/qr.png')}/>
         </View>
       </View>
+      
       </ScrollView>
     </SafeAreaView>
   );
