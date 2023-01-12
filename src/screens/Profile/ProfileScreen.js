@@ -77,7 +77,7 @@ const ProfileScreen =({navigation})=>{
           </View>
         </View>
       </View>
-      <Button onPress={async ()=> {
+      <Button style={{height:10}} onPress={async ()=> {
         await Auth.delete() 
         navigation.navigate("SignIn")
 
