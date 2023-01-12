@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   Dimensions,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -73,9 +74,9 @@ const Event = () => {
             January 12, 2022
           </Text>
           <Text>Thursday, 8:00 AM</Text>
-          <Pressable style={styles.button}>
+          <TouchableOpacity style={styles.button}>
             <Text style={{ color: "blue" }}>Add to My Calendar</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -120,13 +121,13 @@ const Event = () => {
             Grand Avenue Center
           </Text>
           <Text>21 Baker Street</Text>
-          <Pressable style={styles.button}>
+          <TouchableOpacity style={styles.button}>
             <Text style={{ color: "blue" }}>See on Maps</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
 
-      <Pressable style={styles.buy}>
+      <TouchableOpacity style={styles.buy}>
         <Text style={{ color: "white" }}>Buy Ticket</Text>
         <Icon
           name="arrowright"
@@ -134,7 +135,7 @@ const Event = () => {
           color="white"
           style={{ marginLeft: 20 }}
         />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
