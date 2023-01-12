@@ -17,7 +17,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 const Event = () => {
   return (
     <View style={styles.container}>
-      <Image style={styles.banner} source={require("../assets/kenza.jpg")} />
+      <Image style={styles.banner} source={require("../../../assets/kenza.jpg")} />
 
       <View style={styles.row}>
         <View style={styles.category}>

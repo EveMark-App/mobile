@@ -7,6 +7,7 @@ import MyTicketScreen from '../../screens/MyTicket/MyTicketScreen';
 import AuthenticationScreen from '../../screens/Authentication/LoginScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
+
 const Tab = createBottomTabNavigator();
 
 const Navbar = () =>{
