@@ -7,6 +7,7 @@ import MyTicketScreen from '../../screens/MyTicket/MyTicketScreen';
 import AuthenticationScreen from '../../screens/Authentication/LoginScreen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
+
 const Tab = createBottomTabNavigator();
 
 const Navbar = () =>{
@@ -24,7 +25,7 @@ const Navbar = () =>{
                 <Icon name="ticket-percent-outline" color="#0094D2" size={25}/>
                 );
             }}}  />
-            <Tab.Screen name="My Events" component={MyEventsScreen} options={{tabBarIcon:()=>{
+            <Tab.Screen name="Created Events" component={MyEventsScreen} options={{tabBarIcon:()=>{
                 return(
                 <MIcon name="event" color="#0094D2" size={25}/>
                 );

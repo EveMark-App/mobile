@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react';
-import {View, SafeAreaView, StyleSheet, Image, ScrollView} from 'react-native';
+import {View, SafeAreaView,RefreshControl, StyleSheet, Image, ScrollView} from 'react-native';
 import { Button } from 'react-native-elements';
 import {
   Avatar,
@@ -12,16 +12,24 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Auth } from '../../components/Auth';
 
+const wait = (timeout) => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+}
 
 
 const ProfileScreen =({navigation})=>{
   const [profile, setProfile] = useState({});
   const [isReady, setIsReady] = useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(1000).then(() => setRefreshing(false));
+  }, []);
 
   useEffect(() => {
     const getProfileData = async ()=>{
       const user = JSON.parse(await Auth.get())
-      console.log()
       fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
         method: "GET",
         credentials: "include",
@@ -29,7 +37,6 @@ const ProfileScreen =({navigation})=>{
         .then((response) => response.json())
         .then(async (responseJson) => {
           //Hide Loader
-          console.log(responseJson)
           setProfile(responseJson);
           setIsReady(true);
         })
@@ -49,7 +56,12 @@ const ProfileScreen =({navigation})=>{
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      <ScrollView refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+          />
+        } >
       <View style={styles.userInfoSection}>
         <View style={{flexDirection: 'row', marginTop: 15}}>
           <Avatar.Image 
@@ -65,7 +77,7 @@ const ProfileScreen =({navigation})=>{
           </View>
         </View>
       </View>
-      <Button onPress={async ()=> {
+      <Button style={{height:10}} onPress={async ()=> {
         await Auth.delete() 
         navigation.navigate("SignIn")
 

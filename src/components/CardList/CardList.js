@@ -28,6 +28,7 @@ const MyCardList = () => {
 
       <FlatList
         data={data}
+        listKey="1"
         renderItem={({ item }) => (
           <Card data={item} />
         )}

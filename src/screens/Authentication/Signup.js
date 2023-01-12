@@ -55,7 +55,6 @@ export default function SignUp({ navigation }) {
       .then(async (responseJson) => {
         //Hide Loader
         setLoading(false);
-        console.log(responseJson);
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
           navigation.navigate("SignIn");

@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
 
 const Card = ({ data }) => {
+  const navigation = useNavigation(); 
 {console.log(data.bannerURL)}
   return (
     <View style={styles.cardContainer}>
@@ -26,7 +29,7 @@ const Card = ({ data }) => {
             </Text>
           </View>
           <View style={styles.textFrame}>
-            <Text
+            <Text onPress={()=>navigation.navigate("Event")}
               style={{
                 alignSelf: "center",
                 fontSize: 7,

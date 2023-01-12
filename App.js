@@ -8,6 +8,9 @@ import Login from "./src/screens/Authentication/LoginScreen";
 import SignUp from "./src/screens/Authentication/Signup";
 import { useEffect, useState } from "react";
 import { Auth } from "./src/components/Auth";
+import Event from "./src/screens/Event/EventScreen";
+import Card from "./src/components/Card/Card";
+import MyCardList from "./src/components/CardList/CardList";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -33,7 +36,20 @@ export default function App() {
     <NavigationContainer>
       {isSignedIn ? (
         <>
-          <Navbar></Navbar>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
+            
+            <Stack.Screen name="Navbar" component={Navbar} />
+            <Stack.Screen name="Event" component={Event}/>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+
+            
+
+
+          </Stack.Navigator>
+
         </>
       ) : (
         <>
@@ -44,6 +60,7 @@ export default function App() {
             <Stack.Screen name="SignIn" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="Navbar" component={Navbar}/>
+            <Stack.Screen name="Event" component={Event}/>
 
 
           </Stack.Navigator>
