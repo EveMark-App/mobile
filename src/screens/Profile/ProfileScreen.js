@@ -85,7 +85,7 @@ const ProfileScreen =({navigation})=>{
           <TouchableOpacity style={styles.button} onPress={async ()=> {
         await Auth.delete() 
         navigation.navigate("Login")}} >
-        <Text style={styles.buttonText}>logout</Text>
+        <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
         </View>
       </View>
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "80%",
-
+    borderRadius:10,
     height: 50,
     width:70,
     alignItems: "center",

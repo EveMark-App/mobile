@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -21,47 +21,45 @@ const Event = ({ route, navigation }) => {
   const { eventId } = route.params;
   useEffect(() => {
     const getEvent = async () => {
-      
       fetch("https://evemark.samikammoun.me/api/event/get-one/" + eventId, {
         method: "GET",
         credentials: "include",
       })
         .then((response) => response.json())
-        .then( (responseJson) => {
+        .then((responseJson) => {
           setEventData(responseJson);
-          console.log(responseJson)
+          console.log(responseJson);
           setIsReady(true);
         })
         .catch((error) => {
           console.error(error);
         });
     };
-    if (!isReady) 
-    getEvent();
+    if (!isReady) getEvent();
   }, [isReady]);
 
   if (!isReady) {
     return null;
   }
 
-  
   return (
- 
     <View style={styles.container}>
-      <Image style={styles.banner} source={require("../../../assets/kenza.jpg")} />
+      <Image style={styles.banner} source={{ uri: eventData.bannerURL }} />
 
       <View style={styles.row}>
         <View style={styles.category}>
-          <Text style={styles.categoryText}>Category</Text>
+          <Text style={styles.categoryText}>{eventData.category}</Text>
         </View>
         <View style={styles.going}>
-          <Text style={styles.attendees}>300 Going</Text>
+          <Text style={styles.attendees}>
+            {eventData.attendees.length.toString()}
+          </Text>
           <Icon name="arrowright" size={15} color="blue" />
         </View>
       </View>
 
       <View style={styles.title}>
-        <Text style={styles.titleText}>Event Title</Text>
+        <Text style={styles.titleText}>{eventData.name}</Text>
       </View>
 
       <View
@@ -102,9 +100,9 @@ const Event = ({ route, navigation }) => {
               fontWeight: "bold",
             }}
           >
-            January 12, 2022
+            {eventData.start_date.substring(0, 10)}
           </Text>
-          <Text>Thursday, 8:00 AM</Text>
+          <Text> 8:00 AM</Text>
           <TouchableOpacity style={styles.button}>
             <Text style={{ color: "blue" }}>Add to My Calendar</Text>
           </TouchableOpacity>
@@ -149,17 +147,22 @@ const Event = ({ route, navigation }) => {
               fontWeight: "bold",
             }}
           >
-            Grand Avenue Center
+            {eventData.location}
           </Text>
-          <Text>21 Baker Street</Text>
+          {/* <Text>21 Baker Street</Text> */}
           <TouchableOpacity style={styles.button}>
             <Text style={{ color: "blue" }}>See on Maps</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      <TouchableOpacity onPress={()=>navigation.navigate("Payment")} style={styles.buy}>
-        <Text style={{ color: "white" }}>Buy Ticket</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Payment", { eventId: eventData._id })}
+        style={styles.buy}
+      >
+        <Text style={{ color: "white" }}>
+          {eventData.price["$numberDecimal"].toString() + "$"} Buy Ticket
+        </Text>
         <Icon
           name="arrowright"
           size={15}
