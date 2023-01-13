@@ -3,10 +3,12 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from '@react-navigation/native';
 
 const Card = ({ data }) => {
+  const navigation = useNavigation(); 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity onPress={()=>navigation.navigate("Event", {eventId: data._id})} style={styles.container}>
       <Image
         style={styles.banner}
         source={{
