@@ -147,7 +147,7 @@ export default function Payment() {
     const styles = StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: "white",
+        backgroundColor: "f5f5f5",
         alignItems: "center",
         justifyContent: "center",
       },
@@ -156,10 +156,12 @@ export default function Payment() {
     flexDirection: 'row',
    paddingtop:50,
   },
-  box:{backgroundColor: "#F5f5f5",
+  box:{backgroundColor: "#Fff",
+
+  paddingBottom:20,
   
   
-  marginBottom: 20,
+  marginBottom: 50,
   
   alignItems: "center",
 },
@@ -175,7 +177,7 @@ export default function Payment() {
     fontWeight: 'bold',
   },
   inputView: {
-    backgroundColor: "#F5f5f5",
+    backgroundColor: "#fff",
     borderRadius: 0.30,
     width: "70%",
     height: 45,

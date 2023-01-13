@@ -4,29 +4,28 @@ import Entypo from "react-native-vector-icons/Entypo";
 import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const Card = () => {
+const Card = ({ data }) => {
   return (
     <TouchableOpacity style={styles.container}>
       <Image
         style={styles.banner}
-        source={{ uri: "https://dummyimage.com/50x50/000/fff" }}
+        source={{
+          uri: data.bannerURL,
+        }}
         resizeMode={"cover"}
       />
       <View style={styles.description}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View>
-            <Text style={styles.title}>Event Title</Text>
+            <Text style={styles.title}>{data.name.substring(0,20)+"..."}</Text>
           </View>
           <View style={styles.category}>
-            <Text style={styles.categoryText}>Category</Text>
+            <Text style={styles.categoryText}>{data.category}</Text>
           </View>
         </View>
         <View>
           <Text style={{ flexWrap: "wrap", fontSize: 10 }}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec qu
+            {data.short_description}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
@@ -48,6 +47,8 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     justifyContent: "flex-start",
     alignItems: "baseline",
+    marginBottom: 25,
+    alignSelf:"center"
   },
   bannerContainer: {
     flex: 1,
