@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react';
-import {View, SafeAreaView,RefreshControl, StyleSheet, Image, ScrollView} from 'react-native';
+import {View, SafeAreaView,RefreshControl, StyleSheet, Image, ScrollView,TouchableOpacity} from 'react-native';
 import { Button } from 'react-native-elements';
 import {
   Avatar,
@@ -69,6 +69,7 @@ const ProfileScreen =({navigation})=>{
             onRefresh={onRefresh}
           />
         } >
+    <View style={{flexDirection: 'row'}}>
       <View style={styles.userInfoSection}>
         <View style={{flexDirection: 'row', marginTop: 15}}>
           <Avatar.Image 
@@ -81,14 +82,16 @@ const ProfileScreen =({navigation})=>{
               marginBottom: 5,
             }]}>{profile.first_name + " " + profile.last_name}</Title>
             <Caption style={styles.caption}>@{profile.first_name +profile.last_name}</Caption>
-          </View>
+          <TouchableOpacity style={styles.button} onPress={async ()=> {
+        await Auth.delete() 
+        navigation.navigate("Login")}} >
+        <Text style={styles.buttonText}>logout</Text>
+      </TouchableOpacity>
         </View>
       </View>
-      <Button style={{height:10}} onPress={async ()=> {
-        await Auth.delete() 
-        navigation.navigate("Login")
-
-      }} title="Logout">logout</Button>
+      </View>
+      </View>
+    
 
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
@@ -142,7 +145,7 @@ const ProfileScreen =({navigation})=>{
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
             <Icon name="qrcode" color="#0094D2" size={25}/>
-            <Text style={styles.menuItemText}>Your QR Code</Text>
+            <Text style={styles.menuItemText}>Your QR Code </Text>
           </View>
         </TouchableRipple>
         <View style={{alignItems:"center"}}>
@@ -218,4 +221,35 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 26,
   },
+  button: {
+    width: "80%",
+
+    height: 50,
+    width:70,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "grey",
+    shadowColor: 'black',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.9,
+    shadowRadius: 2,
+    elevation: 5,
+
+    flex: 1,
+    left:150,
+    margintop:10,
+    
+    
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  text: {
+    color: "grey",
+    marginTop: 20,
+  },
+  bottomText:{
+    marginTop:20
+  }
 });
