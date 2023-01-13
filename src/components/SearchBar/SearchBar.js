@@ -1,50 +1,79 @@
-import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from "react";
+import {
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  StyleSheet,
+} from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const handleSubmit = () => {
-      console.log(`Searching for ${searchTerm}`);
-      // perform search
-    }
+  const handleSubmit = () => {
+    console.log(`Searching for ${searchTerm}`);
+    // perform search
+  };
 
-    return (
-      <View style={{ alignItems: 'center', marginBottom:100 }}>
-        <View style={{ flexDirection: "row", alignItems: "center", top:40 , padding: 10}}>
-          <TextInput
-          style={{ width: 400, height: 30, top:35, borderWidth: 0.5, borderRadius: 10,borderColor: 'grey',flex: 1, padding: 7,top:40 }}
-          placeholder="event"
+  return (
+    <View style={styles.container}>
+      <View style={styles.searchContainer}>
+        <TextInput
+          placeholder="Search"
           value={searchTerm}
           onChangeText={setSearchTerm}
+          placeholderTextColor="black"
         />
         <View>
-    
-        <TouchableOpacity style={{ width: 80, height: 30, top:35, borderRadius: 10 ,borderWidth: 3, borderColor: '#4a1259',backgroundColor: "#4a1259", top:40,right :15, padding: 8, marginLeft: 20, justifyContent: "center", alignItems: "center" }} onPress={handleSubmit}>
-<Text style={{ color: "white" ,fontSize:7}}>Search</Text>
-</TouchableOpacity>
-          
+          <TouchableOpacity onPress={handleSubmit}></TouchableOpacity>
         </View>
-        </View>
-        </View>
-        
-  
-     
-    );
+      </View>
 
+      <View style={styles.iconsContainer}>
+        <TouchableOpacity style={styles.icon}>
+          <Ionicons
+            name="search"
+            size={Dimensions.get("window").width * 0.06}
+            color="black"
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
 };
 
-
-
-
-
-
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "space-evenly",
+    flexDirection: "row",
+    marginHorizontal: 20,
+    marginVertical: 15,
+    alignItems: "center",
+    height: Dimensions.get("window").width * 0.12,
+  },
+  searchContainer: {
+    flex: 0.8,
+    backgroundColor: "lightgray",
+    borderRadius: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 3,
+  },
+  iconsContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flex: 0.15,
+  },
+  icon: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "lightgray",
+    borderRadius: 10,
+    height: Dimensions.get("window").width * 0.1,
+    width: Dimensions.get("window").width * 0.1,
+  },
+});
 
 export default SearchBar;
-
-
-
-
-
-
-
