@@ -1,10 +1,49 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-export default function Oc() {
+export default function Oc({route, navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const { eventId } = route.params;
+
+
+
+
+
+
+
+  const HandleCheckin = async ()=>{
+
+    let dataToSend = { eventId:eventId };
+
+    fetch("https://evemark.samikammoun.me/api/event/checkin/" , {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then(async (responseJson) => {
+        //Hide Loader
+        if(!responseJson.hasOwnProperty("error"))
+        {
+          Alert.alert('Success', `Successfully Cheked-in ${responseJson.email}`, [
+            {text: 'OK', onPress: () => setScanned(false)},
+          ]);
+        
+        }else{
+          Alert.alert('Failed', "Check-in failed! Please retry", [
+            {text: 'OK', onPress: () => setScanned(false)},
+          ]);
+        }
+      })
+      .catch((error) => {
+        //Hide Loader
+        console.error(error);
+      });
+  }
 
   useEffect(() => {
     const getBarCodeScannerPermissions = async () => {
@@ -15,9 +54,11 @@ export default function Oc() {
     getBarCodeScannerPermissions();
   }, []);
 
+  
+
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+
   };
 
   if (hasPermission === null) {
