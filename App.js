@@ -11,6 +11,7 @@ import { Auth } from "./src/components/Auth";
 import Event from "./src/screens/Event/EventScreen";
 import Card from "./src/components/Card/Card";
 import MyCardList from "./src/components/CardList/CardList";
+import Oc from "./src/screens/OC/oc";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
           }}>
             
             <Stack.Screen name="Navbar" component={Navbar} />
+            <Stack.Screen name="OC" component={Oc}/>
             <Stack.Screen name="Event" component={Event}/>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
@@ -60,6 +62,7 @@ export default function App() {
             <Stack.Screen name="SignIn" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="Navbar" component={Navbar}/>
+            <Stack.Screen name="OC" component={Oc}/>
             <Stack.Screen name="Event" component={Event}/>
 
 
