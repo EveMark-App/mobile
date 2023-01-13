@@ -198,7 +198,6 @@ export default function Payment() {
   
   },
   title: {
-    fontFamily: 'Avenir-Heavy',
     color:"#4a1259",
     fontSize: 32,
     marginBottom: 32,

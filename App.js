@@ -44,6 +44,7 @@ export default function App() {
             <Stack.Screen name="Navbar" component={Navbar} />
             <Stack.Screen name="OC" component={Oc}/>
             <Stack.Screen name="Event" component={Event}/>
+            <Stack.Screen name="Payment" component={Payment}/>
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
 
@@ -64,6 +65,7 @@ export default function App() {
             <Stack.Screen name="Navbar" component={Navbar}/>
             <Stack.Screen name="OC" component={Oc}/>
             <Stack.Screen name="Event" component={Event}/>
+            <Stack.Screen name="Payment" component={Payment}/>
 
 
           </Stack.Navigator>
