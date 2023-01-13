@@ -126,12 +126,6 @@ const ProfileScreen =({navigation})=>{
       <View style={styles.menuWrapper}>
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="credit-card" color="#0094D2" size={25}/>
-            <Text style={styles.menuItemText}>Payment</Text>
-          </View>
-        </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
-          <View style={styles.menuItem}>
             <Icon name="account-check-outline" color="#0094D2" size={25}/>
             <Text style={styles.menuItemText}>Support</Text>
           </View>
