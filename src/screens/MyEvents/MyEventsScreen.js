@@ -49,18 +49,20 @@ const MyEventsScreen = () => {
 
   return (
     <View>
-      <Header />
-      <View>
-        <SearchBar />
-        <Text style={{alignSelf:"center", color:"grey", fontWeight:"bold"}}>Click on your event to start scanning Check-In QR Codes</Text>
-        <ScrollView
+      <ScrollView
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
+      <Header />
+      <View>
+        <SearchBar />
+        <Text style={{alignSelf:"center", color:"grey", fontWeight:"bold"}}>Click on your event to start scanning Check-In QR Codes</Text>
+        
           <MyCardList data={createdEvents} nextRoute="OC"/>
-        </ScrollView>
+        
       </View>
+      </ScrollView>
     </View>
   );
 };

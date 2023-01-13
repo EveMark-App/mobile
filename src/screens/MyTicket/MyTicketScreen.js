@@ -49,12 +49,13 @@ const MyTicketScreen = () => {
     
 
     <View>
-      <Header/>
-      <ScrollView
+            <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
+      <Header/>
+
         <MyCardList data={myEvents} nextRoute="Event"/>
       </ScrollView>
     </View>

@@ -153,8 +153,6 @@ const ProfileScreen =({navigation})=>{
 
       value={profile?._id}
     />
-        <Button onPress={()=>navigation.navigate("OC")} title="OC">OC</Button>
-        <Button onPress={()=>navigation.navigate("Payment")} title="Payment"></Button>
 
         </View>
       </View>
