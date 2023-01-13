@@ -10,8 +10,8 @@ import { useEffect, useState } from "react";
 import { Auth } from "./src/components/Auth";
 import Event from "./src/screens/Event/EventScreen";
 import Card from "./src/components/Card/Card";
-import MyCardList from "./src/components/CardList/CardList";
 import Oc from "./src/screens/OC/oc";
+import Payment from "./src/screens/payment/paymentscreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -73,11 +73,4 @@ export default function App() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+
