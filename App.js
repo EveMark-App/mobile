@@ -11,62 +11,57 @@ import { Auth } from "./src/components/Auth";
 import Event from "./src/screens/Event/EventScreen";
 import Card from "./src/components/Card/Card";
 import MyCardList from "./src/components/CardList/CardList";
-const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [isReady, setIsReady] = useState(false);
 
-  useEffect(()=>{
-    const checkLogin = async ()=>{
-      const user = await Auth.get();   
-      setIsSignedIn( user != null)
-      setIsReady(true);
-    }
-    if(!isReady)
-      checkLogin();
-  }, [isReady])
+  // useEffect(()=>{
+  //   const checkLogin = async ()=>{
+  //     const user = await Auth.get();
+  //     setIsSignedIn( user != null)
+  //     setIsReady(true);
+  //   }
+  //   if(!isReady)
+  //     checkLogin();
+  // }, [isReady])
 
-
-  if (!isReady) {
-    return null;
-  }
+  // if (!isReady) {
+  //   return null;
+  // }
 
   return (
-    <NavigationContainer>
-      {isSignedIn ? (
-        <>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            
-            <Stack.Screen name="Navbar" component={Navbar} />
-            <Stack.Screen name="Event" component={Event}/>
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="SignUp" component={SignUp} />
+    // <NavigationContainer>
+    //   {isSignedIn ? (
+    //     <>
+    //       <Stack.Navigator screenOptions={{
+    //         headerShown: false
+    //       }}>
 
-            
+    //         <Stack.Screen name="Navbar" component={Navbar} />
+    //         <Stack.Screen name="Event" component={Event}/>
+    //         <Stack.Screen name="Login" component={Login} />
+    //         <Stack.Screen name="SignUp" component={SignUp} />
 
+    //       </Stack.Navigator>
 
-          </Stack.Navigator>
+    //     </>
+    //   ) : (
+    //     <>
+    //       <Stack.Navigator screenOptions={{
+    //         headerShown: false
+    //       }}>
 
-        </>
-      ) : (
-        <>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            
-            <Stack.Screen name="SignIn" component={Login} />
-            <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Navbar" component={Navbar}/>
-            <Stack.Screen name="Event" component={Event}/>
+    //         <Stack.Screen name="SignIn" component={Login} />
+    //         <Stack.Screen name="SignUp" component={SignUp} />
+    //         <Stack.Screen name="Navbar" component={Navbar}/>
+    //         <Stack.Screen name="Event" component={Event}/>
 
-
-          </Stack.Navigator>
-        </>
-      )}
-    </NavigationContainer>
+    //       </Stack.Navigator>
+    //     </>
+    //   )}
+    // </NavigationContainer>
+    <Card />
   );
 }
 
