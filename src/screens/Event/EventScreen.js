@@ -161,7 +161,7 @@ const Event = ({ route, navigation }) => {
         style={styles.buy}
       >
         <Text style={{ color: "white" }}>
-          {eventData.price["$numberDecimal"].toString() + "$"} Buy Ticket
+          {eventData.price["$numberDecimal"].toString() + " TND"} Buy Ticket
         </Text>
         <Icon
           name="arrowright"

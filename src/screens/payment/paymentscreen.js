@@ -47,7 +47,8 @@ export default function Payment({ route, navigation }) {
   const { eventId } = route.params;
 
   const onSubmit = () => {
-    
+   
+
     fetch("https://evemark.samikammoun.me/api/event/buy", {
       method: "POST",
       body: JSON.stringify({eventId}),
@@ -58,14 +59,14 @@ export default function Payment({ route, navigation }) {
       .then((response) => response.json())
       .then(async (responseJson) => {
         //Hide Loader
-        setLoading(false);
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
+          console.log("suceessful")
           Alert.alert('Success', "Payment Successful", [
-            {text: 'OK', onPress: () =>navigation.navigate("Event")},
+            {text: 'OK', onPress: () =>navigation.navigate("Marketplace")},
           ]);
         } else {
-          Alert.alert('Failed', "Payment Failed!", [
+          Alert.alert('Failed', responseJson.error , [
             {text: 'OK', onPress: () =>console.log("failed")},
           ]);
         }
