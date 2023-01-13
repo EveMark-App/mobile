@@ -28,27 +28,30 @@ const ProfileScreen =({navigation})=>{
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(1000).then(() => setRefreshing(false));
+    getProfileData()
+    wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  useEffect(() => {
-    const getProfileData = async ()=>{
-      const user = JSON.parse(await Auth.get())
-      fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
-        method: "GET",
-        credentials: "include",
+
+  const getProfileData = async ()=>{
+    const user = JSON.parse(await Auth.get())
+    fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then(async (responseJson) => {
+        //Hide Loader
+        setProfile(responseJson);
+        setIsReady(true);
       })
-        .then((response) => response.json())
-        .then(async (responseJson) => {
-          //Hide Loader
-          setProfile(responseJson);
-          setIsReady(true);
-        })
-        .catch((error) => {
-          //Hide Loader
-          console.error(error);
-        });
-    }
+      .catch((error) => {
+        //Hide Loader
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
     if(!isReady)
     getProfileData();
    
@@ -83,7 +86,7 @@ const ProfileScreen =({navigation})=>{
       </View>
       <Button style={{height:10}} onPress={async ()=> {
         await Auth.delete() 
-        navigation.navigate("SignIn")
+        navigation.navigate("Login")
 
       }} title="Logout">logout</Button>
 

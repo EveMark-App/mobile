@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 
 const Card = ({ data }) => {
   const navigation = useNavigation(); 
-{console.log(data.bannerURL)}
   return (
     <View style={styles.cardContainer}>
       <View style={styles.card}>
