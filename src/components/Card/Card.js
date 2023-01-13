@@ -5,10 +5,10 @@ import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from '@react-navigation/native';
 
-const Card = ({ data }) => {
+const Card = ({ data, nextRoute }) => {
   const navigation = useNavigation(); 
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate("Event", {eventId: data._id})} style={styles.container}>
+    <TouchableOpacity onPress={()=>navigation.navigate(nextRoute, {eventId: data._id})} style={styles.container}>
       <Image
         style={styles.banner}
         source={{

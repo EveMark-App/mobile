@@ -10,7 +10,7 @@ const SearchBar = () => {
     }
 
     return (
-      <View style={{ alignItems: 'center', }}>
+      <View style={{ alignItems: 'center', marginBottom:100 }}>
         <View style={{ flexDirection: "row", alignItems: "center", top:40 , padding: 10}}>
           <TextInput
           style={{ width: 400, height: 30, top:35, borderWidth: 0.5, borderRadius: 10,borderColor: 'grey',flex: 1, padding: 7,top:40 }}

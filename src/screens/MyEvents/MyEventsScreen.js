@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, RefreshControl, ScrollView } from "react-native";
+import { View, RefreshControl, ScrollView, Text } from "react-native";
 import Header from "../../components/Header/Header";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import MyCardList from "../../components/CardList/CardList";
@@ -52,11 +52,14 @@ const MyEventsScreen = () => {
       <Header />
       <View>
         <SearchBar />
+        <Text style={{alignSelf:"center", color:"grey", fontWeight:"bold"}}>Click on your event to start scanning Check-In QR Codes</Text>
         <ScrollView
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
-        ></ScrollView>
+        >
+          <MyCardList data={createdEvents} nextRoute="OC"/>
+        </ScrollView>
       </View>
     </View>
   );

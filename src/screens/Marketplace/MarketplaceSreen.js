@@ -41,18 +41,20 @@ const MarketplaceScreen = () => {
 
   return (
     <View>
+              <ScrollView
+       
+       refreshControl={
+         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+       }>
       <Header />
       <View>
         <SearchBar />
-        <ScrollView
-       
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        >
-          <MyCardList data={data}/>
-        </ScrollView>
+
+        
+          <MyCardList data={data} nextRoute="Event"/>
+
       </View>
+      </ScrollView>
     </View>
   );
 };
