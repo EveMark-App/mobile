@@ -11,6 +11,9 @@ import {
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Auth } from '../../components/Auth';
+import QRCode from 'react-native-qrcode-svg';
+
+
 
 const wait = (timeout) => {
   return new Promise(resolve => setTimeout(resolve, timeout));
@@ -22,29 +25,33 @@ const ProfileScreen =({navigation})=>{
   const [isReady, setIsReady] = useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
 
+
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    wait(1000).then(() => setRefreshing(false));
+    getProfileData()
+    wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  useEffect(() => {
-    const getProfileData = async ()=>{
-      const user = JSON.parse(await Auth.get())
-      fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
-        method: "GET",
-        credentials: "include",
+
+  const getProfileData = async ()=>{
+    const user = JSON.parse(await Auth.get())
+    fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then(async (responseJson) => {
+        //Hide Loader
+        setProfile(responseJson);
+        setIsReady(true);
       })
-        .then((response) => response.json())
-        .then(async (responseJson) => {
-          //Hide Loader
-          setProfile(responseJson);
-          setIsReady(true);
-        })
-        .catch((error) => {
-          //Hide Loader
-          console.error(error);
-        });
-    }
+      .catch((error) => {
+        //Hide Loader
+        console.error(error);
+      });
+  }
+
+  useEffect(() => {
     if(!isReady)
     getProfileData();
    
@@ -79,7 +86,7 @@ const ProfileScreen =({navigation})=>{
       </View>
       <Button style={{height:10}} onPress={async ()=> {
         await Auth.delete() 
-        navigation.navigate("SignIn")
+        navigation.navigate("Login")
 
       }} title="Logout">logout</Button>
 
@@ -138,8 +145,14 @@ const ProfileScreen =({navigation})=>{
             <Text style={styles.menuItemText}>Your QR Code</Text>
           </View>
         </TouchableRipple>
-        <View>
-        <Image resizeMode='center' style={{width:300, height: 300, paddingTop:50, alignSelf:'center'}} source={require('../../../assets/qr.png')}/>
+        <View style={{alignItems:"center"}}>
+            <QRCode size={300}
+
+      value={profile._id}
+    />
+        <Button onPress={()=>navigation.navigate("OC")} title="OC">OC</Button>
+        <Button onPress={()=>navigation.navigate("Payment")} title="Payment"></Button>
+
         </View>
       </View>
       

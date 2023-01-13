@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState ,useEffect} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -14,8 +14,39 @@ import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
 
-const Event = () => {
+const Event = ({ route, navigation }) => {
+  const [eventData, setEventData] = useState({});
+  const [isReady, setIsReady] = useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
+  const { eventId } = route.params;
+  useEffect(() => {
+    const getEvent = async () => {
+      
+      fetch("https://evemark.samikammoun.me/api/event/get-one/" + eventId, {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then( (responseJson) => {
+          setEventData(responseJson);
+          console.log(responseJson)
+          setIsReady(true);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    if (!isReady) 
+    getEvent();
+  }, [isReady]);
+
+  if (!isReady) {
+    return null;
+  }
+
+  
   return (
+ 
     <View style={styles.container}>
       <Image style={styles.banner} source={require("../../../assets/kenza.jpg")} />
 
@@ -127,7 +158,7 @@ const Event = () => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.buy}>
+      <TouchableOpacity onPress={()=>navigation.navigate("Payment")} style={styles.buy}>
         <Text style={{ color: "white" }}>Buy Ticket</Text>
         <Icon
           name="arrowright"

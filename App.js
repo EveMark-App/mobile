@@ -10,66 +10,67 @@ import { useEffect, useState } from "react";
 import { Auth } from "./src/components/Auth";
 import Event from "./src/screens/Event/EventScreen";
 import Card from "./src/components/Card/Card";
-import MyCardList from "./src/components/CardList/CardList";
+import Oc from "./src/screens/OC/oc";
+import Payment from "./src/screens/payment/paymentscreen";
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // const [isSignedIn, setIsSignedIn] = useState(false);
-  // const [isReady, setIsReady] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
-  // useEffect(()=>{
-  //   const checkLogin = async ()=>{
-  //     const user = await Auth.get();
-  //     setIsSignedIn( user != null)
-  //     setIsReady(true);
-  //   }
-  //   if(!isReady)
-  //     checkLogin();
-  // }, [isReady])
+  useEffect(()=>{
+    const checkLogin = async ()=>{
+      const user = await Auth.get();   
+      setIsSignedIn( user != null)
+      setIsReady(true);
+    }
+    if(!isReady)
+      checkLogin();
+  }, [isReady])
 
-  // if (!isReady) {
-  //   return null;
-  // }
+
+  if (!isReady) {
+    return null;
+  }
 
   return (
-    // <NavigationContainer>
-    //   {isSignedIn ? (
-    //     <>
-    //       <Stack.Navigator screenOptions={{
-    //         headerShown: false
-    //       }}>
+    <NavigationContainer>
+      {isSignedIn ? (
+        <>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
+            
+            <Stack.Screen name="Navbar" component={Navbar} />
+            <Stack.Screen name="OC" component={Oc}/>
+            <Stack.Screen name="Event" component={Event}/>
+            <Stack.Screen name="Payment" component={Payment}/>
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
 
-    //         <Stack.Screen name="Navbar" component={Navbar} />
-    //         <Stack.Screen name="Event" component={Event}/>
-    //         <Stack.Screen name="Login" component={Login} />
-    //         <Stack.Screen name="SignUp" component={SignUp} />
+            
 
-    //       </Stack.Navigator>
 
-    //     </>
-    //   ) : (
-    //     <>
-    //       <Stack.Navigator screenOptions={{
-    //         headerShown: false
-    //       }}>
+          </Stack.Navigator>
 
-    //         <Stack.Screen name="SignIn" component={Login} />
-    //         <Stack.Screen name="SignUp" component={SignUp} />
-    //         <Stack.Screen name="Navbar" component={Navbar}/>
-    //         <Stack.Screen name="Event" component={Event}/>
+        </>
+      ) : (
+        <>
+          <Stack.Navigator screenOptions={{
+            headerShown: false
+          }}>
+            
+            <Stack.Screen name="SignIn" component={Login} />
+            <Stack.Screen name="SignUp" component={SignUp} />
+            <Stack.Screen name="Navbar" component={Navbar}/>
+            <Stack.Screen name="OC" component={Oc}/>
+            <Stack.Screen name="Event" component={Event}/>
+            <Stack.Screen name="Payment" component={Payment}/>
 
-    //       </Stack.Navigator>
-    //     </>
-    //   )}
-    // </NavigationContainer>
-    <Card />
+
+          </Stack.Navigator>
+        </>
+      )}
+    </NavigationContainer>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });

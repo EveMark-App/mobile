@@ -15,28 +15,31 @@ const MyEventsScreen = () => {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
+    getCreatedEvents()
     wait(1000).then(() => setRefreshing(false));
   }, []);
-  useEffect(() => {
-    const getCreatedEvents = async () => {
-      const user = JSON.parse(await Auth.get());
 
-      fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
-        method: "GET",
-        credentials: "include",
+  const getCreatedEvents = async () => {
+    const user = JSON.parse(await Auth.get());
+
+    fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then(async (responseJson) => {
+        //Hide Loader
+        console.log(responseJson.created_events);
+        setCreatedEvents(responseJson.created_events);
+        setIsReady(true);
       })
-        .then((response) => response.json())
-        .then(async (responseJson) => {
-          //Hide Loader
-          console.log(responseJson.created_events);
-          setCreatedEvents(responseJson.created_events);
-          setIsReady(true);
-        })
-        .catch((error) => {
-          //Hide Loader
-          console.error(error);
-        });
-    };
+      .catch((error) => {
+        //Hide Loader
+        console.error(error);
+      });
+  };
+  useEffect(() => {
+   
     if (!isReady) getCreatedEvents();
   }, [isReady]);
 
