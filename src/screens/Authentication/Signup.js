@@ -57,9 +57,10 @@ export default function SignUp({ navigation }) {
         setLoading(false);
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
-          navigation.navigate("SignIn");
+          navigation.navigate("Login");
         } else {
-          setErrortext(responseJson.msg);
+          setErrortext(responseJson.error);
+          console.log(responseJson.error)
           console.log("Error while creating your account");
         }
       })

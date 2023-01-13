@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { StatusBar } from "expo-status-bar";
+import Loader from "../../components/loader";
 
 const months = [
   { label: "January", value: "01" },
@@ -40,6 +41,7 @@ const years = [
 export default function Payment({ route, navigation }) {
   const [name, setName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const [selectedValue, setSelectedValue] = useState(months[0].value);
   const [cvv, setCvv] = useState("");
@@ -47,11 +49,10 @@ export default function Payment({ route, navigation }) {
   const { eventId } = route.params;
 
   const onSubmit = () => {
-   
-
+    setLoading(true);
     fetch("https://evemark.samikammoun.me/api/event/buy", {
       method: "POST",
-      body: JSON.stringify({eventId}),
+      body: JSON.stringify({ eventId }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -60,14 +61,15 @@ export default function Payment({ route, navigation }) {
       .then(async (responseJson) => {
         //Hide Loader
         // If server response message same as Data Matched
+        setLoading(false);
         if (!responseJson.hasOwnProperty("error")) {
-          console.log("suceessful")
-          Alert.alert('Success', "Payment Successful", [
-            {text: 'OK', onPress: () =>navigation.navigate("Marketplace")},
+          console.log("suceessful");
+          Alert.alert("Success", "Payment Successful", [
+            { text: "OK", onPress: () => navigation.navigate("Marketplace") },
           ]);
         } else {
-          Alert.alert('Failed', responseJson.error , [
-            {text: 'OK', onPress: () =>console.log("failed")},
+          Alert.alert("Failed", responseJson.error, [
+            { text: "OK", onPress: () => console.log("failed") },
           ]);
         }
       })
@@ -80,6 +82,8 @@ export default function Payment({ route, navigation }) {
 
   return (
     <ScrollView contentContainerStyle={styles.content}>
+      <Loader loading={loading} />
+
       <View style={styles.header}>
         <Text style={styles.title}>Payment details</Text>
       </View>

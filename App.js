@@ -20,7 +20,7 @@ export default function App() {
 
   useEffect(()=>{
     const checkLogin = async ()=>{
-      const user = await Auth.get();   
+      const user = await Auth.get();
       setIsSignedIn( user != null)
       setIsReady(true);
     }
@@ -60,7 +60,7 @@ export default function App() {
             headerShown: false
           }}>
             
-            <Stack.Screen name="SignIn" component={Login} />
+            <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="Navbar" component={Navbar}/>
             <Stack.Screen name="OC" component={Oc}/>

@@ -80,8 +80,8 @@ const ProfileScreen =({navigation})=>{
             <Title style={[styles.title, {
               marginTop:15,
               marginBottom: 5,
-            }]}>{profile.first_name + " " + profile.last_name}</Title>
-            <Caption style={styles.caption}>@{profile.first_name +profile.last_name}</Caption>
+            }]}>{profile?.first_name + " " + profile?.last_name}</Title>
+            <Caption style={styles.caption}>@{profile?.first_name +profile?.last_name}</Caption>
           <TouchableOpacity style={styles.button} onPress={async ()=> {
         await Auth.delete() 
         navigation.navigate("Login")}} >
@@ -104,20 +104,20 @@ const ProfileScreen =({navigation})=>{
         </View>
         <View style={styles.row}>
           <Icon name="email" color="#777777" size={20}/>
-          <Text style={{color:"#777777", marginLeft: 20}}>{profile.email}</Text>
+          <Text style={{color:"#777777", marginLeft: 20}}>{profile?.email}</Text>
         </View>
       </View>
       <View style={styles.infoBoxWrapper}>
           <View style={styles.infoBox}>
-            <Title style={styles.number}>{profile.created_events.length.toString()}</Title>
+            <Title style={styles.number}>{profile?.created_events.length.toString()}</Title>
             <Caption>Events Organized</Caption>
           </View>
           <View style={styles.infoBox}>
-            <Title style={styles.number}>{profile.my_events.length.toString()}</Title>
+            <Title style={styles.number}>{profile?.my_events.length.toString()}</Title>
             <Caption>Events attended</Caption>
           </View>
           <View style={styles.infoBox}>
-            <Title style={styles.number}>{profile.my_events.length.toString()}</Title>
+            <Title style={styles.number}>{profile?.my_events.length.toString()}</Title>
             <Caption>Tickets</Caption>
           </View>
       </View>
@@ -151,7 +151,7 @@ const ProfileScreen =({navigation})=>{
         <View style={{alignItems:"center"}}>
             <QRCode size={300}
 
-      value={profile._id}
+      value={profile?._id}
     />
         <Button onPress={()=>navigation.navigate("OC")} title="OC">OC</Button>
         <Button onPress={()=>navigation.navigate("Payment")} title="Payment"></Button>
