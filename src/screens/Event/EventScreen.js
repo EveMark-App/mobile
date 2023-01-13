@@ -21,7 +21,6 @@ const Event = ({ route, navigation }) => {
   const { eventId } = route.params;
   useEffect(() => {
     const getEvent = async () => {
-      console.log(eventId)
       
       fetch("https://evemark.samikammoun.me/api/event/get-one/" + eventId, {
         method: "GET",
