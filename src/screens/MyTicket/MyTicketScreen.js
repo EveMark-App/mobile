@@ -3,6 +3,7 @@ import { Text, SafeAreaView,ScrollView, RefreshControl, View } from "react-nativ
 import { Auth } from "../../components/Auth";
 import MyCardList from "../../components/CardList/CardList";
 import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -55,6 +56,7 @@ const MyTicketScreen = () => {
         }
       >
       <Header/>
+      <SearchBar/>
 
         <MyCardList data={myEvents} nextRoute="Event"/>
       </ScrollView>
