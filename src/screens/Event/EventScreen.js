@@ -158,7 +158,7 @@ const Event = ({ route, navigation }) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.buy}>
+      <TouchableOpacity onPress={()=>navigation.navigate("Payment")} style={styles.buy}>
         <Text style={{ color: "white" }}>Buy Ticket</Text>
         <Icon
           name="arrowright"

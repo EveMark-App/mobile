@@ -180,7 +180,7 @@ export default function Payment() {
     width: "70%",
     height: 45,
     marginBottom: 20,
-    alignItems: "left",
+    // alignItems: "left",
     
   },
   button: {
