@@ -15,7 +15,7 @@ const MyEventsScreen = () => {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    getCreatedEvents()
+    getCreatedEvents();
     wait(1000).then(() => setRefreshing(false));
   }, []);
 
@@ -39,7 +39,6 @@ const MyEventsScreen = () => {
       });
   };
   useEffect(() => {
-   
     if (!isReady) getCreatedEvents();
   }, [isReady]);
 
@@ -49,16 +48,20 @@ const MyEventsScreen = () => {
 
   return (
     <View>
-      <Header />
       <View>
+        <Header />
         <SearchBar />
-        <Text style={{alignSelf:"center", color:"grey", fontWeight:"bold"}}>Click on your event to start scanning Check-In QR Codes</Text>
+        <Text
+          style={{ alignSelf: "center", color: "grey", fontWeight: "bold" }}
+        >
+          Click on your event to start scanning Check-In QR Codes
+        </Text>
         <ScrollView
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
         >
-          <MyCardList data={createdEvents} nextRoute="OC"/>
+          <MyCardList data={createdEvents} nextRoute="OC" />
         </ScrollView>
       </View>
     </View>

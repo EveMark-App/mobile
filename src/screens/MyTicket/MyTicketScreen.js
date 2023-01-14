@@ -1,5 +1,11 @@
-import React, { useEffect, useState ,useCallback} from "react";
-import { Text, SafeAreaView,ScrollView, RefreshControl, View } from "react-native";
+import React, { useEffect, useState, useCallback } from "react";
+import {
+  Text,
+  SafeAreaView,
+  ScrollView,
+  RefreshControl,
+  View,
+} from "react-native";
 import { Auth } from "../../components/Auth";
 import MyCardList from "../../components/CardList/CardList";
 import Header from "../../components/Header/Header";
@@ -46,16 +52,14 @@ const MyTicketScreen = () => {
   }
 
   return (
-    
-
     <View>
-      <Header/>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <MyCardList data={myEvents} nextRoute="Event"/>
+        <Header />
+        <MyCardList data={myEvents} nextRoute="Event" />
       </ScrollView>
     </View>
   );

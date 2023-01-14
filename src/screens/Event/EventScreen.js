@@ -52,7 +52,7 @@ const Event = ({ route, navigation }) => {
         </View>
         <View style={styles.going}>
           <Text style={styles.attendees}>
-            {eventData.attendees.length.toString()}
+            {eventData.attendees.length.toString()} Going
           </Text>
           <Icon name="arrowright" size={15} color="blue" />
         </View>
@@ -60,6 +60,16 @@ const Event = ({ route, navigation }) => {
 
       <View style={styles.title}>
         <Text style={styles.titleText}>{eventData.name}</Text>
+        <View>
+          <Text
+            style={{
+              flexWrap: "wrap",
+              fontSize: Dimensions.get("window").width * 0.04,
+            }}
+          >
+            {eventData.short_description}
+          </Text>
+        </View>
       </View>
 
       <View
@@ -96,7 +106,6 @@ const Event = ({ route, navigation }) => {
         <View style={{ flexDirection: "column" }}>
           <Text
             style={{
-              fontSize: Dimensions.get("window").width * 0.045,
               fontWeight: "bold",
             }}
           >
@@ -143,7 +152,6 @@ const Event = ({ route, navigation }) => {
         <View style={{ flexDirection: "column" }}>
           <Text
             style={{
-              fontSize: Dimensions.get("window").width * 0.045,
               fontWeight: "bold",
             }}
           >
@@ -157,11 +165,14 @@ const Event = ({ route, navigation }) => {
       </View>
 
       <TouchableOpacity
-        onPress={() => navigation.navigate("Payment", { eventId: eventData._id })}
+        onPress={() =>
+          navigation.navigate("Payment", { eventId: eventData._id })
+        }
         style={styles.buy}
       >
-        <Text style={{ color: "white" }}>
-          {eventData.price["$numberDecimal"].toString() + " TND"} Buy Ticket
+        <Text style={{ color: "white" }}>Buy Ticket : </Text>
+        <Text style={{ color: "white", fontWeight: "bold" }}>
+          {eventData.price["$numberDecimal"].toString() + " TND"}
         </Text>
         <Icon
           name="arrowright"
@@ -179,6 +190,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "column",
+    marginBottom: "15%",
   },
   banner: {
     width: "100%",
@@ -215,12 +227,13 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginRight: 10,
   },
+  title: {
+    marginHorizontal: 20,
+  },
   titleText: {
-    fontSize: Dimensions.get("window").width * 0.1,
+    fontSize: Dimensions.get("window").width * 0.08,
     color: "black",
     fontWeight: "bold",
-    marginLeft: 20,
-    marginRight: 20,
   },
   button: {
     alignItems: "center",

@@ -1,9 +1,17 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
+import moment from "moment/moment";
 
 const Card = ({ data, nextRoute }) => {
   const navigation = useNavigation();
@@ -20,14 +28,14 @@ const Card = ({ data, nextRoute }) => {
         resizeMode={"cover"}
       />
       <View style={styles.description}>
+        <View style={styles.category}>
+          <Text style={styles.categoryText}>{data.category}</Text>
+        </View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View>
             <Text style={styles.title}>
               {data.name.substring(0, 20) + "..."}
             </Text>
-          </View>
-          <View style={styles.category}>
-            <Text style={styles.categoryText}>{data.category}</Text>
           </View>
         </View>
         <View>
@@ -49,13 +57,13 @@ const styles = StyleSheet.create({
     width: "80%",
     height: 250,
     flexDirection: "column",
-    borderColor: "gray",
-    borderRadius: 20,
-    borderWidth: 1.5,
+    borderTopEndRadius: 20,
+    borderTopStartRadius: 20,
     justifyContent: "flex-start",
     alignItems: "baseline",
     marginBottom: 25,
     alignSelf: "center",
+    elevation: 2,
   },
   bannerContainer: {
     flex: 1,
@@ -68,15 +76,16 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     marginBottom: 10,
+    alignItems: "baseline",
   },
   description: {
     marginHorizontal: 20,
+    alignItems: "baseline",
   },
   category: {
     borderRadius: 20,
     borderWidth: 1.5,
     borderColor: "blue",
-    marginLeft: 10,
   },
   categoryText: {
     fontSize: 10,
@@ -87,7 +96,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
     flexWrap: "wrap",
   },
@@ -96,10 +105,14 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontWeight: "bold",
   },
-  date: {
+  dateContainer: {
     backgroundColor: "white",
     color: "blue",
     fontSize: 15,
+    fontWeight: "bold",
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
   },
 });
 

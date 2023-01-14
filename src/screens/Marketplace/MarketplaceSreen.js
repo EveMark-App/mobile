@@ -13,47 +13,43 @@ const MarketplaceScreen = () => {
   const [data, setData] = useState([]);
   const fetchEvents = () => {
     fetch("https://evemark.samikammoun.me/api/event/get-all", {
-    method: "GET",
-    credentials: "include",
-  })
-    .then((response) => response.json())
-    .then(async (responseJson) => {
-      //Hide Loader
-      
-      setData(responseJson);
+      method: "GET",
+      credentials: "include",
     })
-    .catch((error) => {
-      //Hide Loader
-      console.error(error);
-    });
-  }
+      .then((response) => response.json())
+      .then(async (responseJson) => {
+        //Hide Loader
+
+        setData(responseJson);
+      })
+      .catch((error) => {
+        //Hide Loader
+        console.error(error);
+      });
+  };
 
   useEffect(() => {
     fetchEvents();
-   
   }, []);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    fetchEvents()
+    fetchEvents();
     wait(1000).then(() => setRefreshing(false));
   }, []);
 
   return (
     <View>
-              <ScrollView
-       
-       refreshControl={
-         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-       }>
-      <Header />
-      <View>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <Header />
         <SearchBar />
-
-        
-          <MyCardList data={data} nextRoute="Event"/>
-
-      </View>
+        <View>
+          <MyCardList data={data} nextRoute="Event" />
+        </View>
       </ScrollView>
     </View>
   );

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "space-evenly",
     flexDirection: "row",
-    marginTop: "18%",
+    marginTop: "10%",
     marginHorizontal: 20,
     alignItems: "center",
     height: Dimensions.get("window").width * 0.12,
