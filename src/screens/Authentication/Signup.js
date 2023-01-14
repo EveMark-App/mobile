@@ -15,17 +15,18 @@ export default function SignUp({ navigation }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [errorText, setErrortext] = useState("");
+  const [error, setError] = useState('');
+ 
   const [loading, setLoading] = useState(false);
 
   const handleSignUp = () => {
-    setErrortext("");
-    if (!email) {
-      alert("Please fill Email");
+    setError("");
+    if (!email.includes('@') || !email.includes('.')){
+      alert("Invalid email address");
       return;
     }
-    if (!password) {
-      alert("Please fill Password");
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters");
       return;
     }
     if (!firstName) {
