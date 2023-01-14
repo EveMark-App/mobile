@@ -1,8 +1,9 @@
 import React, { useEffect, useState ,useCallback} from "react";
-import { Text, SafeAreaView,ScrollView, RefreshControl, View } from "react-native";
+import { Text,ScrollView, RefreshControl, View } from "react-native";
 import { Auth } from "../../components/Auth";
 import MyCardList from "../../components/CardList/CardList";
 import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
@@ -19,6 +20,7 @@ const MyTicketScreen = () => {
   }, []);
 
   const getMyEvents = async () => {
+
     const user = JSON.parse(await Auth.get());
     fetch("https://evemark.samikammoun.me/api/user/get-info/" + user.id, {
       method: "GET",
@@ -50,6 +52,7 @@ const MyTicketScreen = () => {
 
     <View>
       <Header/>
+      <SearchBar/>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

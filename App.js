@@ -1,15 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Navbar from "./src/components/Navbar/Navbar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MarketplaceScreen from "./src/screens/Marketplace/MarketplaceSreen";
 import Login from "./src/screens/Authentication/LoginScreen";
 import SignUp from "./src/screens/Authentication/Signup";
 import { useEffect, useState } from "react";
 import { Auth } from "./src/components/Auth";
 import Event from "./src/screens/Event/EventScreen";
-import Card from "./src/components/Card/Card";
 import Oc from "./src/screens/OC/oc";
 import Payment from "./src/screens/payment/paymentscreen";
 const Stack = createNativeStackNavigator();

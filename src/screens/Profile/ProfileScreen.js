@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react';
-import {View, SafeAreaView,RefreshControl, StyleSheet, Image, ScrollView,TouchableOpacity} from 'react-native';
+import {View,RefreshControl, StyleSheet, Image, ScrollView,TouchableOpacity} from 'react-native';
 import { Button } from 'react-native-elements';
 import {
   Avatar,
@@ -62,7 +62,7 @@ const ProfileScreen =({navigation})=>{
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ScrollView refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -160,7 +160,7 @@ const ProfileScreen =({navigation})=>{
       </View>
       
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
