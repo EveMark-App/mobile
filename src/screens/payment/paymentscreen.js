@@ -41,12 +41,34 @@ export default function Payment({ route, navigation }) {
   const [name, setName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState(null);
   const [selectedValue, setSelectedValue] = useState(months[0].value);
   const [cvv, setCvv] = useState("");
   const [selectedValu, setSelectedValu] = useState(years[7].value);
   const { eventId } = route.params;
+  const [error1, setError1] = useState(null);
 
+  const validateCardNumber = (cardNumber) => {
+    // const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+    const  regex =  /^[0-9]{12,19}$/;
+    return regex.test(cardNumber) ;
+   };
+ 
+   const handlecardnumberChange = (text) => {setCardNumber(text);
+     setError(null);
+   };
+   
+   const validateCvv = (cvv) => {
+     // Regular expression to check for valid CVV
+     const regex1 =  /^[0-9]{3,4}$/;
+     return regex1.test(cvv);
+   }
+   
+ 
+   const handlecvvChange = (text) => {setCvv(text);
+     setError1(null);
+   };
+ 
   const onSubmit = () => {
     setLoading(true);
     fetch("https://evemark.samikammoun.me/api/event/buy", {
@@ -78,6 +100,22 @@ export default function Payment({ route, navigation }) {
         setLoading(false);
         console.error(error);
       });
+
+      if (!validateCardNumber(cardNumber)) {
+        setError ('Invalid card number');
+   
+      }  else {
+        setError('');
+      
+      }
+      if (!validateCvv(cvv)){
+  
+        setError1 ('Invalid cvv');
+  
+      } else {
+        setError1('');
+      }
+
   };
 
   return (
@@ -104,8 +142,13 @@ export default function Payment({ route, navigation }) {
             style={styles.textField}
             placeholder="Card Number"
             value={cardNumber}
-            onChangeText={(text) => setCardNumber(text)}
-          />
+            onChangeText={(handlecardnumberChange) => {
+              setCardNumber(handlecardnumberChange);
+           
+              }}
+              />
+             {error && <Text style={{ color: 'red' }}>{error}</Text>}
+          
         </View>
         <View>
           <Text
@@ -174,12 +217,20 @@ export default function Payment({ route, navigation }) {
         </View>
 
         <View style={styles.inputView}>
-          <TextInput
+        <TextInput
+          secureTextEntry={true}
             style={styles.textField}
             placeholder="Security Code"
             value={cvv}
-            onChangeText={(text) => setCvv(text)}
-          />
+            onChangeText={(handlecvvChange) => {
+              setCvv(handlecvvChange);
+           
+              }}
+              />
+             {error1 && <Text style={{ color: 'red' }}>{error1}</Text>}
+          
+              
+          
         </View>
         <TouchableOpacity style={styles.button} onPress={onSubmit}>
           <Text style={styles.buttonText}>Pay</Text>
