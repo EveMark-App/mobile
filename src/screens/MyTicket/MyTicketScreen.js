@@ -51,8 +51,7 @@ const MyTicketScreen = () => {
     
 
     <View>
-      <Header/>
-      <SearchBar/>
+     
     
             <ScrollView
         refreshControl={
