@@ -36,7 +36,7 @@ const Card = ({ data, nextRoute }) => {
         </View>
         <View>
           <Text style={{ flexWrap: "wrap", fontSize: 10 }}>
-            {data.short_description.substring(0, 200) + "..."}
+            {data.short_description.substring(0, 100) + "..."}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
