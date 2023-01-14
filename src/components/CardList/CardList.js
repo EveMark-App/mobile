@@ -12,7 +12,7 @@ const MyCardList = ({data, nextRoute}) => {
     <View style={styles.cardListContainer}>
         {data.map((item)=>{
           return(
-            <Card key={data.id} data={item} nextRoute={nextRoute} />
+            <Card key={data._id} data={item} nextRoute={nextRoute} />
           )
         })}
     </View>
