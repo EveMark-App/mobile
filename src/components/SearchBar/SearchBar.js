@@ -9,22 +9,18 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const SearchBar = ({searchText, onChangeText, handleSubmit}) => {
 
-  const handleSubmit = () => {
-    console.log(`Searching for ${searchTerm}`);
-    // perform search
-  };
+
 
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
         <TextInput
           placeholder="Search"
-          value={searchTerm}
-          onChangeText={setSearchTerm}
+          onChangeText={onChangeText}
           placeholderTextColor="black"
+          value={searchText}
         />
         <View>
           <TouchableOpacity onPress={handleSubmit}></TouchableOpacity>

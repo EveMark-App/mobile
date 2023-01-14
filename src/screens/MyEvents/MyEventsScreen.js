@@ -10,6 +10,9 @@ const wait = (timeout) => {
 };
 const MyEventsScreen = () => {
   const [createdEvents, setCreatedEvents] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+
   const [isReady, setIsReady] = useState(false);
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -18,6 +21,29 @@ const MyEventsScreen = () => {
     getCreatedEvents();
     wait(1000).then(() => setRefreshing(false));
   }, []);
+
+
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = createdEvents.filter(function (item) {
+        const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(createdEvents);
+      setSearch(text);
+    }
+  };
+
 
   const getCreatedEvents = async () => {
     const user = JSON.parse(await Auth.get());
@@ -29,8 +55,9 @@ const MyEventsScreen = () => {
       .then((response) => response.json())
       .then(async (responseJson) => {
         //Hide Loader
-        console.log(responseJson.created_events);
         setCreatedEvents(responseJson.created_events);
+        setFilteredDataSource(responseJson.created_events);
+
         setIsReady(true);
       })
       .catch((error) => {
@@ -51,7 +78,10 @@ const MyEventsScreen = () => {
       <ScrollView>
         <View>
           <Header />
-          <SearchBar />
+          <SearchBar 
+            searchText={search}
+          onChangeText={(text) => searchFilterFunction(text)}
+          />
           <Text
             style={{ alignSelf: "center", color: "grey", fontWeight: "bold" }}
           >
@@ -62,7 +92,7 @@ const MyEventsScreen = () => {
               <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
             }
           >
-            <MyCardList data={createdEvents} nextRoute="OC" />
+            <MyCardList data={filteredDataSource} nextRoute="OC" />
           </ScrollView>
         </View>
       </ScrollView>

@@ -18,12 +18,35 @@ const MyTicketScreen = () => {
   const [myEvents, setMyEvents] = useState([]);
   const [isReady, setIsReady] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [search, setSearch] = useState("");
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     getMyEvents();
     wait(1000).then(() => setRefreshing(false));
   }, []);
+
+  const searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = myEvents.filter(function (item) {
+        const itemData = item.name ? item.name.toUpperCase() : "".toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(myEvents);
+      setSearch(text);
+    }
+  };
 
   const getMyEvents = async () => {
     const user = JSON.parse(await Auth.get());
@@ -36,6 +59,8 @@ const MyTicketScreen = () => {
         //Hide Loader
         console.log(responseJson.my_events);
         setMyEvents(responseJson.my_events);
+        setFilteredDataSource(responseJson.my_events);
+
         setIsReady(true);
       })
       .catch((error) => {
@@ -60,7 +85,12 @@ const MyTicketScreen = () => {
         }
       >
         <Header />
-        <MyCardList data={myEvents} nextRoute="Event" />
+        <SearchBar
+          searchText={search}
+          onChangeText={(text) => searchFilterFunction(text)}
+        />
+
+        <MyCardList data={filteredDataSource} nextRoute="Event" />
       </ScrollView>
     </View>
   );
