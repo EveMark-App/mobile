@@ -119,7 +119,7 @@ export default function SignUp({ navigation }) {
       </TouchableOpacity>
       <Text
         style={styles.bottomText}
-        onPress={() => navigation.navigate("SignIn")}
+        onPress={() => navigation.navigate("Login")}
       >
         {" "}
         Already have an account?
