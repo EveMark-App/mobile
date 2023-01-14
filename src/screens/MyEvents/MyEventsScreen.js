@@ -48,22 +48,23 @@ const MyEventsScreen = () => {
 
   return (
     <View>
-      <View>
-        <Header />
-        <SearchBar />
-        <Text
-          style={{ alignSelf: "center", color: "grey", fontWeight: "bold" }}
-        >
-          Click on your event to start scanning Check-In QR Codes
-        </Text>
-        <ScrollView
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        >
-          <MyCardList data={createdEvents} nextRoute="OC" />
-        </ScrollView>
-      </View>
+      <ScrollView>
+        <View>
+          <Header />
+          <SearchBar />
+          <Text
+            style={{ alignSelf: "center", color: "grey", fontWeight: "bold" }}
+          >
+            Click on your event to start scanning Check-In QR Codes
+          </Text>
+          <ScrollView
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            <MyCardList data={createdEvents} nextRoute="OC" />
+          </ScrollView>
+        </View>
       </ScrollView>
     </View>
   );
