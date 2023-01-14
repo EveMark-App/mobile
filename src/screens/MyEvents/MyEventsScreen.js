@@ -64,6 +64,7 @@ const MyEventsScreen = () => {
           <MyCardList data={createdEvents} nextRoute="OC" />
         </ScrollView>
       </View>
+      </ScrollView>
     </View>
   );
 };

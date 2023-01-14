@@ -55,6 +55,7 @@ export default function Payment({ route, navigation }) {
       body: JSON.stringify({ eventId }),
       headers: {
         "Content-Type": "application/json",
+        credentials: "include",
       },
     })
       .then((response) => response.json())

@@ -9,6 +9,7 @@ import {
 import { Auth } from "../../components/Auth";
 import MyCardList from "../../components/CardList/CardList";
 import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const wait = (timeout) => {
   return new Promise((resolve) => setTimeout(resolve, timeout));
