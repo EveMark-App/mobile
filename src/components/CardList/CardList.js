@@ -27,7 +27,7 @@ const MyCardList = ({data, nextRoute}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 400,
+    paddingTop: "70%",
   },
   cardListContainer: {
     justifyContent: "center",

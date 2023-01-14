@@ -3,12 +3,15 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import Icon from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 const Card = ({ data, nextRoute }) => {
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity onPress={()=>navigation.navigate(nextRoute, {eventId: data._id})} style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate(nextRoute, { eventId: data._id })}
+      style={styles.container}
+    >
       <Image
         style={styles.banner}
         source={{
@@ -19,7 +22,9 @@ const Card = ({ data, nextRoute }) => {
       <View style={styles.description}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View>
-            <Text style={styles.title}>{data.name.substring(0,20)+"..."}</Text>
+            <Text style={styles.title}>
+              {data.name.substring(0, 20) + "..."}
+            </Text>
           </View>
           <View style={styles.category}>
             <Text style={styles.categoryText}>{data.category}</Text>
@@ -27,7 +32,7 @@ const Card = ({ data, nextRoute }) => {
         </View>
         <View>
           <Text style={{ flexWrap: "wrap", fontSize: 10 }}>
-            {data.short_description.substring(0,200)+"..."}
+            {data.short_description.substring(0, 200) + "..."}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "baseline",
     marginBottom: 25,
-    alignSelf:"center"
+    alignSelf: "center",
   },
   bannerContainer: {
     flex: 1,
@@ -84,6 +89,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: "bold",
+    flexWrap: "wrap",
   },
   location: {
     fontSize: 12,
