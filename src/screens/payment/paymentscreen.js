@@ -9,7 +9,6 @@ import {
   Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { StatusBar } from "expo-status-bar";
 import Loader from "../../components/loader";
 
 const months = [

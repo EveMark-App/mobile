@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import Loader from "../../components/loader";
 import { Button } from "react-native";
 import { Auth } from "../../components/Auth";
@@ -62,7 +61,6 @@ export default function Login({navigation}) {
   return (
     <View style={styles.container}>
       <Loader loading={loading} />
-      <StatusBar style="auto" />
       <Image
         style={styles.image}
         source={require("../../../assets/logo.png")}

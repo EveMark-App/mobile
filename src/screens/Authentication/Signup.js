@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import Loader from "../../components/loader";
 
 export default function SignUp({ navigation }) {
@@ -75,7 +74,6 @@ export default function SignUp({ navigation }) {
     <View style={styles.container}>
         <Loader loading={loading} />
 
-      <StatusBar style="auto" />
       <Image
         style={styles.image}
         source={require("../../../assets/logo.png")}
