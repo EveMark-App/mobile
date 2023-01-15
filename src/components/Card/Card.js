@@ -5,13 +5,9 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  ImageBackground,
 } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
-import Icon from "react-native-vector-icons/AntDesign";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
-import moment from "moment/moment";
 
 const Card = ({ data, nextRoute }) => {
   const navigation = useNavigation();
@@ -34,18 +30,18 @@ const Card = ({ data, nextRoute }) => {
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View>
             <Text style={styles.title}>
-              {data.name.substring(0, 20) + "..."}
+              { data.name.length > 17 ? data.name.substring(0, 20) + "..." :data.name}
             </Text>
           </View>
         </View>
         <View>
           <Text style={{ flexWrap: "wrap", fontSize: 10 }}>
-            {data.short_description.substring(0, 200) + "..."}
+            {data.short_description.length > 100 ? data.short_description.substring(0, 100) + "..." :data.short_description}
           </Text>
         </View>
         <View style={{ flexDirection: "row", alignItems: "flex-end" }}>
           <Entypo name="location-pin" size={15} color="blue" />
-          <Text style={styles.location}>Grand Avenue Center, Indonesia</Text>
+          <Text style={styles.location}>{data.location}</Text>
         </View>
       </View>
     </TouchableOpacity>

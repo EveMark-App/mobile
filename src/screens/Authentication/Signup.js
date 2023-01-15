@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import {
   View,
   Text,
@@ -7,7 +8,6 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import Loader from "../../components/loader";
 
 export default function SignUp({ navigation }) {
@@ -15,17 +15,18 @@ export default function SignUp({ navigation }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [errorText, setErrortext] = useState("");
+  const [error, setError] = useState('');
+ 
   const [loading, setLoading] = useState(false);
 
   const handleSignUp = () => {
-    setErrortext("");
-    if (!email) {
-      alert("Please fill Email");
+    setError("");
+    if (!email.includes('@') || !email.includes('.')){
+      alert("Invalid email address");
       return;
     }
-    if (!password) {
-      alert("Please fill Password");
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters");
       return;
     }
     if (!firstName) {
@@ -75,7 +76,6 @@ export default function SignUp({ navigation }) {
     <View style={styles.container}>
         <Loader loading={loading} />
 
-      <StatusBar style="auto" />
       <Image
         style={styles.image}
         source={require("../../../assets/logo.png")}
@@ -119,7 +119,7 @@ export default function SignUp({ navigation }) {
       </TouchableOpacity>
       <Text
         style={styles.bottomText}
-        onPress={() => navigation.navigate("SignIn")}
+        onPress={() => navigation.navigate("Login")}
       >
         {" "}
         Already have an account?

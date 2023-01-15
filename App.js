@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import Navbar from "./src/components/Navbar/Navbar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -15,16 +15,14 @@ export default function App() {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
-  useEffect(()=>{
-    const checkLogin = async ()=>{
+  useEffect(() => {
+    const checkLogin = async () => {
       const user = await Auth.get();
-      setIsSignedIn( user != null)
+      setIsSignedIn(user != null);
       setIsReady(true);
-    }
-    if(!isReady)
-      checkLogin();
-  }, [isReady])
-
+    };
+    if (!isReady) checkLogin();
+  }, [isReady]);
 
   if (!isReady) {
     return null;
@@ -32,39 +30,38 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="white"
+      />
       {isSignedIn ? (
         <>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
             <Stack.Screen name="Navbar" component={Navbar} />
-            <Stack.Screen name="OC" component={Oc}/>
-            <Stack.Screen name="Event" component={Event}/>
-            <Stack.Screen name="Payment" component={Payment}/>
+            <Stack.Screen name="OC" component={Oc} />
+            <Stack.Screen name="Event" component={Event} />
+            <Stack.Screen name="Payment" component={Payment} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
-
-            
-
-
           </Stack.Navigator>
-
         </>
       ) : (
         <>
-          <Stack.Navigator screenOptions={{
-            headerShown: false
-          }}>
-            
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Navbar" component={Navbar}/>
-            <Stack.Screen name="OC" component={Oc}/>
-            <Stack.Screen name="Event" component={Event}/>
-            <Stack.Screen name="Payment" component={Payment}/>
-
-
+            <Stack.Screen name="Navbar" component={Navbar} />
+            <Stack.Screen name="OC" component={Oc} />
+            <Stack.Screen name="Event" component={Event} />
+            <Stack.Screen name="Payment" component={Payment} />
           </Stack.Navigator>
         </>
       )}

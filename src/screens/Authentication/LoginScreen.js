@@ -7,26 +7,32 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { StatusBar } from "expo-status-bar";
 import Loader from "../../components/loader";
 import { Button } from "react-native";
 import { Auth } from "../../components/Auth";
 import { ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState("");
 
   const handleLogin = () => {
-    setErrortext("");
     if (!email) {
       alert("Please fill Email");
       return;
     }
     if (!password) {
       alert("Please fill Password");
+      return;
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+      alert("Invalid email address");
+      return;
+    }
+    if (password.length < 8) {
+      alert("Password must be at least 8 characters");
       return;
     }
     setLoading(true);
@@ -46,9 +52,10 @@ export default function Login({navigation}) {
         // If server response message same as Data Matched
         if (!responseJson.hasOwnProperty("error")) {
           await Auth.save(responseJson);
-          navigation.navigate("Navbar")
+          navigation.navigate("Navbar");
         } else {
           setErrortext(responseJson.msg);
+          alert(responseJson.error);
           console.log("Please check your email id or password");
         }
       })
@@ -62,7 +69,6 @@ export default function Login({navigation}) {
   return (
     <View style={styles.container}>
       <Loader loading={loading} />
-      <StatusBar style="auto" />
       <Image
         style={styles.image}
         source={require("../../../assets/logo.png")}
@@ -89,7 +95,13 @@ export default function Login({navigation}) {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <Text style={styles.bottomText} onPress={()=> navigation.navigate('SignUp')}> Don't have an account yet?</Text>
+      <Text
+        style={styles.bottomText}
+        onPress={() => navigation.navigate("SignUp")}
+      >
+        {" "}
+        Don't have an account yet?
+      </Text>
     </View>
   );
 }
@@ -137,7 +149,7 @@ const styles = StyleSheet.create({
     color: "grey",
     marginTop: 20,
   },
-  bottomText:{
-    marginTop:20
-  }
+  bottomText: {
+    marginTop: 20,
+  },
 });
