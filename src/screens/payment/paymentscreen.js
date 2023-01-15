@@ -50,7 +50,7 @@ export default function Payment({ route, navigation }) {
   const [error1, setError1] = useState(null);
 
   const validateCardNumber = (cardNumber) => {
-    // const regex = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+    
     const  regex =  /^[0-9]{12,19}$/;
     return regex.test(cardNumber) ;
    };
@@ -60,7 +60,7 @@ export default function Payment({ route, navigation }) {
    };
    
    const validateCvv = (cvv) => {
-     // Regular expression to check for valid CVV
+    
      const regex1 =  /^[0-9]{3,4}$/;
      return regex1.test(cvv);
    }
@@ -280,8 +280,8 @@ const styles = StyleSheet.create({
     borderRadius: 0.3,
     width: "70%",
     height: 45,
-    marginBottom: 20,
-    // alignItems: "left",
+    marginBottom: "5%"
+    
   },
   button: {
     width: "40%",
