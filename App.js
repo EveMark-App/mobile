@@ -66,6 +66,7 @@ export default function App() {
             <Stack.Screen name="OC" component={Oc} />
             <Stack.Screen name="Event" component={Event} />
             <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="Ticket" component={Ticket} />
           </Stack.Navigator>
         </>
       )}
