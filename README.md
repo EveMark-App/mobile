@@ -1,6 +1,6 @@
 #  EveMark
 
-An effective solution that will facilitate the astronauts’ daily tasks using Mixed Reality and Holograms.
+EveMark is a revolutionary event ticketing management app that makes it easy for event organizers to sell tickets, manage attendees, and track ticket sales in real-time and for event enthusiasts to find the newest events available and book their tickets. With EveMark, you can easily create event pages and set up ticket pricing. The app also provides advanced security features to prevent ticket fraud and scalping, and allows for seamless check-in and entry at the event. EveMark is the perfect solution for any event organizer looking to streamline their ticketing process and sell more tickets. With EveMark you can make your event a huge success.
 
 ##  Technical Details
 
