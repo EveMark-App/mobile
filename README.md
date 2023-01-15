@@ -99,11 +99,11 @@ https://user-images.githubusercontent.com/93081163/208190123-74d83fd1-5950-4d28-
 
 ##  Test It Yourself
 
-You can install EveMark and test it yourselves on your android phones by following this [link](https://www.mediafire.com/file/ur1m9rtt5ueumho/astroguide.apk/file) or by scanning this QR Code.
+You can install EveMark and test it yourselves on your android phones by following this [link](https://www.mediafire.com/file/dwg4vmlam8t383k/evemarkv3.apk/file) or by scanning this QR Code.
 
 <p align="center">
 
-<img src="https://user-images.githubusercontent.com/18351368/208192677-af1d7353-fd7c-4ab7-822a-60c6896e1def.png" width="20%"/>
+<img src="https://user-images.githubusercontent.com/93081163/212550758-99f90b97-1a5c-4792-a050-ad5080b966c1.png" width="20%"/>
 
 </p>
 
