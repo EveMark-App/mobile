@@ -10,18 +10,51 @@ import {
   Dimensions,
 } from "react-native";
 import QRCode from "react-native-qrcode-svg";
-import { Auth } from "../../components/Auth";
+import { useScrollToTop } from "@react-navigation/native";
 
-const Ticket = () => {
+const Ticket = ({route, navigation}) => {
+
+  const [eventData, setEventData] = useState({});
+  const [user, setUser] = useState({})
+  const [isReady, setIsReady] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const { eventId } = route.params;
+  useEffect(() => {
+   
+    const getEvent = async () => {
+      setUser(JSON.parse(await Auth.get()))
+      
+      fetch("https://evemark.samikammoun.me/api/event/get-one/" + eventId, {
+        method: "GET",
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          setEventData(responseJson);
+          setIsReady(true);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    if (!isReady) getEvent();
+  }, [isReady]);
+
+  if (!isReady) {
+    return null;
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.ticket}>
         <View style={styles.top}>
           <View style={{ flex: 0.2 }}>
-            <Text style={styles.event}>Event Name</Text>
+            <Text style={styles.event}>{eventData.name}</Text>
           </View>
           <View style={{ flex: 0.7 }}>
-            <QRCode size={Dimensions.get("window").width * 0.5} />
+         
+            <QRCode value={user?.id} size={Dimensions.get("window").width * 0.5} />
           </View>
         </View>
         <View style={styles.deco}>
@@ -32,12 +65,12 @@ const Ticket = () => {
         <View style={styles.bottom}>
           <View style={styles.element}>
             <Text style={styles.title}>Name</Text>
-            <Text style={styles.info}>Foulen Foulen</Text>
+            <Text style={styles.info}>{user.first_name +" " + user.last_name}</Text>
           </View>
           <View style={styles.dates}>
             <View style={(styles.element, { flex: 0.5 })}>
               <Text style={styles.title}>Date</Text>
-              <Text style={styles.info}>14/01/2023</Text>
+              <Text style={styles.info}>{eventData.start_date.substring(0, 10)}</Text>
             </View>
             <View style={(styles.element, { flex: 0.5 })}>
               <Text style={styles.title}>Time</Text>
@@ -46,7 +79,7 @@ const Ticket = () => {
           </View>
           <View style={styles.element}>
             <Text style={styles.title}>Location</Text>
-            <Text style={styles.info}>Tunis, Tunisia</Text>
+            <Text style={styles.info}>{eventData.location}</Text>
           </View>
         </View>
       </View>
@@ -64,6 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor:"white",
     justifyContent: "space-evenly",
   },
   ticket: {

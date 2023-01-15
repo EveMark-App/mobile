@@ -90,7 +90,7 @@ const MyTicketScreen = () => {
           onChangeText={(text) => searchFilterFunction(text)}
         />
 
-        <MyCardList data={filteredDataSource} nextRoute="Event" />
+        <MyCardList data={filteredDataSource} nextRoute="Ticket" />
       </ScrollView>
     </View>
   );

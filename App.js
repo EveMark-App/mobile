@@ -9,6 +9,9 @@ import { Auth } from "./src/components/Auth";
 import Event from "./src/screens/Event/EventScreen";
 import Oc from "./src/screens/OC/oc";
 import Payment from "./src/screens/payment/paymentscreen";
+import Ticket from "./src/components/Ticket/Ticket";
+
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -45,6 +48,7 @@ export default function App() {
             <Stack.Screen name="OC" component={Oc} />
             <Stack.Screen name="Event" component={Event} />
             <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="Ticket" component={Ticket} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
           </Stack.Navigator>

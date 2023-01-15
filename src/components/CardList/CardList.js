@@ -2,26 +2,21 @@ import React, { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet, ScrollView, Text } from "react-native";
 import Card from "../Card/Card";
 import Header from "../Header/Header";
-const MyCardList = ({data, nextRoute}) => {
-
-
+const MyCardList = ({ data, nextRoute }) => {
   return (
     <>
-    {data.length >0 ?  (
-
-    <View style={styles.cardListContainer}>
-        {data.map((item)=>{
-          return(
-            <Card key={data._id} data={item} nextRoute={nextRoute} />
-          )
-        })}
-    </View>
-     ) : (
-      <View style={styles.container}>
-      <Text style={styles.testText}>You don't have any items yet!</Text>
-      </View>
-     )}
-     </>
+      {data.length > 0 ? (
+        <View style={styles.cardListContainer}>
+          {data.map((item) => {
+            return <Card key={data._id} data={item} nextRoute={nextRoute} />;
+          })}
+        </View>
+      ) : (
+        <View style={styles.container}>
+          <Text style={styles.testText}>You don't have any items yet!</Text>
+        </View>
+      )}
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -35,10 +30,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  testText:{
-    alignSelf:"center",
-    color:"grey",
-  }
+  testText: {
+    alignSelf: "center",
+    color: "grey",
+  },
 });
 export default MyCardList;
-
