@@ -60,9 +60,9 @@ export default function SignUp({ navigation }) {
         if (!responseJson.hasOwnProperty("error")) {
           navigation.navigate("Login");
         } else {
-          setErrortext(responseJson.error);
+          setError(responseJson.error);
           console.log(responseJson.error)
-          console.log("Error while creating your account");
+          alert("Error while creating your account");
         }
       })
       .catch((error) => {
@@ -75,6 +75,9 @@ export default function SignUp({ navigation }) {
   return (
     <View style={styles.container}>
         <Loader loading={loading} />
+        <View style={styles.header}>
+        <Text style={styles.title}>Create a new account</Text>
+      </View>
 
       <Image
         style={styles.image}
@@ -174,5 +177,18 @@ const styles = StyleSheet.create({
   },
   bottomText: {
     marginTop: 20,
+  },
+  title: {
+    color: "#4a1259",
+    fontSize: 42,
+    marginBottom: 52,
+    fontWeight: "bold",
+    fontFamily:'Roboto',
+    margintop: 10,
+    alignItems: "center",
+  },
+  header: {
+    alignItems: "center",
+    fontSize: "bold",
   },
 });

@@ -6,11 +6,15 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  ScrollView,
+  KeyboardAvoidingView,
+
 } from "react-native";
 import Loader from "../../components/loader";
 import { Button } from "react-native";
 import { Auth } from "../../components/Auth";
 import { ReloadInstructions } from "react-native/Libraries/NewAppScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
@@ -55,8 +59,12 @@ export default function Login({ navigation }) {
           navigation.navigate("Navbar");
         } else {
           setErrortext(responseJson.msg);
+<<<<<<< Updated upstream
           alert(responseJson.error);
           console.log("Please check your email id or password");
+=======
+          alert("Please check your email id or password");
+>>>>>>> Stashed changes
         }
       })
       .catch((error) => {
@@ -65,10 +73,16 @@ export default function Login({ navigation }) {
         console.error(error);
       });
   };
-
+ 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView  style={styles.container}>
+  
+     
       <Loader loading={loading} />
+      <View style={styles.header}>
+        <Text style={styles.title}>Welcome to EveMark!</Text>
+      </View>
+
       <Image
         style={styles.image}
         source={require("../../../assets/logo.png")}
@@ -95,6 +109,7 @@ export default function Login({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
+<<<<<<< Updated upstream
       <Text
         style={styles.bottomText}
         onPress={() => navigation.navigate("SignUp")}
@@ -103,6 +118,11 @@ export default function Login({ navigation }) {
         Don't have an account yet?
       </Text>
     </View>
+=======
+      <Text style={styles.bottomText} onPress={()=> navigation.navigate('SignUp')}> Don't have an account yet?</Text>
+   
+    </KeyboardAvoidingView>
+>>>>>>> Stashed changes
   );
 }
 
@@ -149,7 +169,26 @@ const styles = StyleSheet.create({
     color: "grey",
     marginTop: 20,
   },
+<<<<<<< Updated upstream
   bottomText: {
     marginTop: 20,
+=======
+  bottomText:{
+    marginTop:20
+  },
+
+  title: {
+    color: "#4a1259",
+    fontSize: 42,
+    marginBottom: 52,
+    fontWeight: "bold",
+    fontFamily:'Roboto',
+    margintop: 10,
+    alignItems: "center",
+  },
+  header: {
+    alignItems: "center",
+    fontSize: "bold",
+>>>>>>> Stashed changes
   },
 });
