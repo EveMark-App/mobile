@@ -36,7 +36,7 @@ The app is built on the React Native framework, which provides a smooth and effi
 
 ### Installing Dependencies
 
-After cloning the project, you need to install all the dependencies with you favorate package manager (we recommend yarn!)
+After cloning the project, you need to install all the dependencies with you favourite package manager (we recommend yarn as npm is not working correctly!)
 ```sh
 yarn 
 //or
