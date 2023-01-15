@@ -59,12 +59,8 @@ export default function Login({ navigation }) {
           navigation.navigate("Navbar");
         } else {
           setErrortext(responseJson.msg);
-<<<<<<< Updated upstream
           alert(responseJson.error);
           console.log("Please check your email id or password");
-=======
-          alert("Please check your email id or password");
->>>>>>> Stashed changes
         }
       })
       .catch((error) => {
@@ -75,7 +71,7 @@ export default function Login({ navigation }) {
   };
  
   return (
-    <KeyboardAvoidingView  style={styles.container}>
+    <View  style={styles.container}>
   
      
       <Loader loading={loading} />
@@ -109,7 +105,6 @@ export default function Login({ navigation }) {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-<<<<<<< Updated upstream
       <Text
         style={styles.bottomText}
         onPress={() => navigation.navigate("SignUp")}
@@ -118,11 +113,6 @@ export default function Login({ navigation }) {
         Don't have an account yet?
       </Text>
     </View>
-=======
-      <Text style={styles.bottomText} onPress={()=> navigation.navigate('SignUp')}> Don't have an account yet?</Text>
-   
-    </KeyboardAvoidingView>
->>>>>>> Stashed changes
   );
 }
 
@@ -169,17 +159,13 @@ const styles = StyleSheet.create({
     color: "grey",
     marginTop: 20,
   },
-<<<<<<< Updated upstream
-  bottomText: {
-    marginTop: 20,
-=======
   bottomText:{
     marginTop:20
   },
 
   title: {
     color: "#4a1259",
-    fontSize: 42,
+    fontSize: 25,
     marginBottom: 52,
     fontWeight: "bold",
     fontFamily:'Roboto',
@@ -189,6 +175,5 @@ const styles = StyleSheet.create({
   header: {
     alignItems: "center",
     fontSize: "bold",
->>>>>>> Stashed changes
   },
 });

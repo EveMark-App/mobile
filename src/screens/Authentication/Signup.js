@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  KeyboardAvoidingView,
 } from "react-native";
 import Loader from "../../components/loader";
 
@@ -87,7 +88,7 @@ export default function SignUp({ navigation }) {
       <View style={styles.inputView}>
         <TextInput
           style={styles.Textinput}
-          placeholder="FirstName"
+          placeholder="First Name"
           onChangeText={(firstName) => setFirstName(firstName)}
         />
       </View>
@@ -95,7 +96,7 @@ export default function SignUp({ navigation }) {
       <View style={styles.inputView}>
         <TextInput
           style={styles.Textinput}
-          placeholder="lastName"
+          placeholder="last Name"
           onChangeText={(lastName) => setLastName(lastName)}
         />
       </View>
@@ -180,7 +181,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#4a1259",
-    fontSize: 42,
+    fontSize: 25,
     marginBottom: 52,
     fontWeight: "bold",
     fontFamily:'Roboto',
