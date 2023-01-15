@@ -4,17 +4,6 @@
 
 You will need an expo account to use Expo Application Services. So, to create your expo account go to their [website](https://expo.dev), click Sign Up button in the top-right corner and complete the registration process. After that, confirm your email address, and you are ready to go!
 
-To build the project, you need to download EAS
-```sh
-yarn dev
-
-```
-
-To run the project in the production environment, use the following command
-```sh
-yarn start
-
-```
 ### Installing Expo Application Services
 
 Before you can start using Expo Application Services you need to install it by opening the terminal and typing:
