@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  StatusBar,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import Loader from "../../components/loader";
@@ -142,6 +143,7 @@ export default function Payment({ route, navigation }) {
             style={styles.textField}
             placeholder="Card Number"
             value={cardNumber}
+            keyboardType="numeric"
             onChangeText={(handlecardnumberChange) => {
               setCardNumber(handlecardnumberChange);
            
@@ -222,6 +224,7 @@ export default function Payment({ route, navigation }) {
             style={styles.textField}
             placeholder="Security Code"
             value={cvv}
+            keyboardType="numeric"
             onChangeText={(handlecvvChange) => {
               setCvv(handlecvvChange);
            
