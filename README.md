@@ -1,4 +1,67 @@
-## Building 
+#  EveMark
+
+An effective solution that will facilitate the astronauts’ daily tasks using Mixed Reality and Holograms.
+
+##  Technical Details
+
+EveMark makes use of the React Native framework, which enables the creation of cross-platform mobile apps using JavaScript and React.
+
+The app includes features such as an event marketplace, ticket pricing, ticket sales and management, participant check-in and tracking using automatically generated QR Codes. The user interface is designed to be user-friendly and straightforward, allowing event organizers to handle the check-in of their events quickly and easily, and event attendees to find all new events in one location and book their tickets.
+
+The app stores and manages event and participant information using the MongoDB database system. It also includes a built-in QR code scanner for event check-in.
+
+The app is built on the React Native framework, which provides a smooth and efficient performance as well as an easy-to-maintain codebase. It provides maximum reach for event organizers by being able to deploy on both Android and iOS. Overall, EveMark provides event organizers with a comprehensive solution for managing and promoting their events, selling tickets, and tracking attendance.
+
+##  Screenshots
+
+<p float="left">
+
+<img src="./screenshots/1.jpg" width="32%" />
+
+<img src="./screenshots/2.jpg" width="32%" />
+
+<img src="./screenshots/3.jpg" width="32%" />
+
+</p>
+
+<p float="left">
+
+<img src="./screenshots/4.jpg" width="32%" />
+
+<img src="./screenshots/5.jpg" width="32%" />
+
+<img src="./screenshots/6.jpg" width="32%" />
+
+## How To Run On Expo
+
+### Installing Dependencies
+
+After cloning the project, you need to install all the dependencies with you favorate package manager (we recommend yarn!)
+```sh
+yarn 
+//or
+npm install
+
+```
+
+### Starting the app on Expo Go
+
+Please make sure to download Expo Go app from the playstore and then write this command in your terminal (make sure to be on the root directory of the project)
+
+1. If both your PC and Mobile Device are connected to the same Wi-Fi you can run this command
+```sh
+yarn start
+```
+2. If your PC and Mobile Device aren't connected to the same Wi-Fi you can run this command
+```sh
+yarn start --tunnel
+```
+
+
+Finally, scan the QR Code given in the terminal with the Expo Go app QR Code scanner and the app will run on your device.
+
+
+##  How To Build
 
 ### Creating Expo Account
 
@@ -29,5 +92,19 @@ If you don't have an Android Keystore, then EAS will ask you if you need one, se
 Once the status of the progress changes to Finished, it means that finally you have our application build, and you can download it by clicking Download button. 
 
 ![download apk](https://i.ibb.co/qMsdbHK/SCR-20230115-kno.png)
+
+##  Demo Video
+
+https://user-images.githubusercontent.com/93081163/208190123-74d83fd1-5950-4d28-b7fa-1a174c0322e8.mp4
+
+##  Test It Yourself
+
+You can install EveMark and test it yourselves on your android phones by following this [link](https://www.mediafire.com/file/ur1m9rtt5ueumho/astroguide.apk/file) or by scanning this QR Code.
+
+<p align="center">
+
+<img src="https://user-images.githubusercontent.com/18351368/208192677-af1d7353-fd7c-4ab7-822a-60c6896e1def.png" width="20%"/>
+
+</p>
 
 
