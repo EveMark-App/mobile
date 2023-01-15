@@ -142,7 +142,7 @@ const ProfileScreen =({navigation})=>{
             <Text style={styles.menuItemText}>Your QR Code </Text>
           </View>
         </TouchableRipple>
-        <View style={{alignItems:"center"}}>
+        <View style={{alignItems:"center", marginBottom:"5%"}}>
             <QRCode size={300}
 
       value={profile?._id}
